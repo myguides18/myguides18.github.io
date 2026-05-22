@@ -529,7 +529,7 @@
             <h2 class="section-title">最新攻略</h2>
             <div class="grid">
                 <!-- 攻略卡片1 -->
-                <a href="https://www.gamersky.com/z/eldenring/" target="_blank" style="text-decoration:none;color:inherit;">
+                <a href="https://www.gamersky.com/z/eldenring/" target="_blank" style="text-decoration:none;color:inherit;" data-category="魂类 动作冒险 RPG 开放世界">
 <article class="card">
                     <div class="card-image">
                         <span class="game-icon">⚔️</span>
@@ -550,7 +550,7 @@
 </a>
 
                 <!-- 攻略卡片2 -->
-                <a href="https://www.gamersky.com/z/bmwukong/" target="_blank" style="text-decoration:none;color:inherit;">
+                <a href="https://www.gamersky.com/z/bmwukong/" target="_blank" style="text-decoration:none;color:inherit;" data-category="魂类 动作冒险">
 <article class="card">
                     <div class="card-image" style="background: linear-gradient(135deg, #1a3a2a, #2a1a3a);">
                         <span class="game-icon">🗡️</span>
@@ -591,7 +591,7 @@
 </a>
 
                 <!-- 攻略卡片4 -->
-                <a href="https://www.3dmgame.com/games/hspl/gl/" target="_blank" style="text-decoration:none;color:inherit;">
+                <a href="https://www.3dmgame.com/games/hspl/gl/" target="_blank" style="text-decoration:none;color:inherit;" data-category="开放世界 模拟经营">
 <article class="card">
                     <div class="card-image" style="background: linear-gradient(135deg, #1a1a3a, #2a2a1a);">
                         <span class="game-icon">🎮</span>
@@ -777,5 +777,33 @@
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
 
+<script>
+// 分类筛选功能
+document.addEventListener('DOMContentLoaded', function() {
+    const tags = document.querySelectorAll('.tags .tag');
+    const grid = document.querySelector('.sidebar-section .grid');
+    if (!grid) return;
+    const cards = grid.querySelectorAll('a[data-category]');
+
+    tags.forEach(tag => {
+        tag.addEventListener('click', function() {
+            // 更新激活状态
+            tags.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            const category = this.textContent.trim();
+
+            cards.forEach(card => {
+                if (category === '全部') {
+                    card.style.display = '';
+                } else {
+                    const cats = card.getAttribute('data-category').split(' ');
+                    card.style.display = cats.includes(category) ? '' : 'none';
+                }
+            });
+        });
+    });
+});
+</script>
 </body>
 </html>
