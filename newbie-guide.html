@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新手入门专题 - GameGuide</title>
+    <style>
+        :root {
+            --bg: #0f0f1a;
+            --card-bg: #1a1a2e;
+            --border: #2a2a4a;
+            --accent: #6c5ce7;
+            --text: #e0e0e0;
+            --text-secondary: #a0a0b0;
+            --gold: #f0a500;
+            --tag-bg: #252540;
+            --green: #00b894;
+            --blue: #0984e3;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+        }
+        .header {
+            background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 24px;
+        }
+        .header-inner {
+            max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
+            justify-content: space-between; height: 64px;
+        }
+        .logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+        .logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none; font-size: 14px;
+            font-weight: 500; transition: color 0.2s; padding: 8px 0; position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); }
+        .nav-links a.active::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+            height: 2px; background: var(--accent); border-radius: 1px;
+        }
+        .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #1a2a3a 50%, #1a1a2e 100%);
+            border: 1px solid var(--border); border-radius: 16px; padding: 48px;
+            margin-bottom: 40px; text-align: center; position: relative; overflow: hidden;
+        }
+        .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 12px; position: relative; z-index: 1; }
+        .hero h1 span { color: var(--green); }
+        .hero p {
+            color: var(--text-secondary); font-size: 16px; max-width: 600px;
+            margin: 0 auto 24px; position: relative; z-index: 1;
+        }
+        .hero .stats { display: flex; justify-content: center; gap: 48px; position: relative; z-index: 1; }
+        .hero .stat-item { text-align: center; }
+        .hero .stat-number { font-size: 28px; font-weight: 700; color: var(--green); }
+        .hero .stat-label { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+        .section-title {
+            font-size: 20px; font-weight: 700; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .section-title::before {
+            content: ''; width: 4px; height: 24px; background: var(--green); border-radius: 2px;
+        }
+        .guide-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px; margin-bottom: 40px;
+        }
+        .guide-card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 12px; overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .guide-card:hover {
+            transform: translateY(-4px); border-color: var(--green);
+            box-shadow: 0 8px 30px rgba(0, 184, 148, 0.15);
+        }
+        .guide-header {
+            background: linear-gradient(135deg, #1a2a3a, #1a1a2e);
+            padding: 20px; border-bottom: 1px solid var(--border);
+        }
+        .guide-category {
+            font-size: 12px; color: var(--green); font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+        }
+        .guide-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+        .guide-desc { font-size: 13px; color: var(--text-secondary); }
+        .guide-body { padding: 20px; }
+        .guide-topic {
+            display: flex; align-items: center; gap: 12px; padding: 12px 0;
+            border-bottom: 1px solid var(--border); cursor: pointer; transition: padding-left 0.2s;
+        }
+        .guide-topic:last-child { border-bottom: none; }
+        .guide-topic:hover { padding-left: 8px; }
+        .topic-icon {
+            width: 32px; height: 32px; border-radius: 8px; display: flex;
+            align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+        }
+        .topic-icon.basic { background: rgba(0, 184, 148, 0.1); color: var(--green); }
+        .topic-icon.control { background: rgba(108, 92, 231, 0.1); color: var(--accent); }
+        .topic-icon.term { background: rgba(240, 165, 0, 0.1); color: var(--gold); }
+        .topic-icon.community { background: rgba(9, 132, 227, 0.1); color: var(--blue); }
+        .topic-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+        .topic-info span { font-size: 12px; color: var(--text-secondary); }
+        .faq-section {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 12px; padding: 24px; margin-bottom: 40px;
+        }
+        .faq-item { margin-bottom: 20px; }
+        .faq-item:last-child { margin-bottom: 0; }
+        .faq-question {
+            font-size: 15px; font-weight: 600; color: var(--text);
+            margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+        }
+        .faq-question::before { content: 'Q:'; color: var(--green); font-weight: 700; }
+        .faq-answer { font-size: 14px; color: var(--text-secondary); padding-left: 24px; }
+        .resource-list {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px; margin-bottom: 40px;
+        }
+        .resource-card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 8px; padding: 16px; display: flex; align-items: center;
+            gap: 12px; transition: border-color 0.2s;
+        }
+        .resource-card:hover { border-color: var(--green); }
+        .resource-icon {
+            width: 40px; height: 40px; border-radius: 8px;
+            background: rgba(0, 184, 148, 0.1); display: flex;
+            align-items: center; justify-content: center; font-size: 20px;
+            color: var(--green); flex-shrink: 0;
+        }
+        .resource-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+        .resource-info span { font-size: 12px; color: var(--text-secondary); }
+        .footer {
+            text-align: center; padding: 32px; border-top: 1px solid var(--border);
+            color: var(--text-secondary); font-size: 13px;
+        }
+        @media (max-width: 768px) {
+            .guide-grid { grid-template-columns: 1fr; }
+            .resource-list { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero { padding: 32px 20px; }
+            .hero h1 { font-size: 24px; }
+            .hero .stats { gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo">Game<span>Guide</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="pc-games.html">PC游戏</a></li>
+            <li><a href="#">手游攻略</a></li>
+            <li><a href="#">主机游戏</a></li>
+            <li><a href="#">新游评测</a></li>
+        </ul>
+    </div>
+</header>
+
+<main class="main">
+
+    <section class="hero">
+        <h1><span>新手入门</span>专题攻略合集</h1>
+        <p>从零开始，系统学习游戏基础知识、操作技巧、术语解释，助你快速融入游戏世界</p>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">专题攻略</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">48</div>
+                <div class="stat-label">知识点</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">890万+</div>
+                <div class="stat-label">新手受益</div>
+            </div>
+        </div>
+    </section>
+
+    <h2 class="section-title">新手入门指南</h2>
+    <div class="guide-grid">
+        <article class="guide-card">
+            <div class="guide-header">
+                <div class="guide-category">基础操作</div>
+                <h3 class="guide-title">游戏操作入门：从键盘鼠标到游戏手柄</h3>
+                <p class="guide-desc">掌握游戏基本操作方式，适应不同输入设备</p>
+            </div>
+            <div class="guide-body">
+                <div class="guide-topic">
+                    <div class="topic-icon basic">K</div>
+                    <div class="topic-info">
+                        <h4>键盘鼠标操作</h4>
+                        <span>WASD移动、快捷键设置、鼠标灵敏度调整</span>
+                    </div>
+                </div>
+                <div class="guide-topic">
+                    <div class="topic-icon control">G</div>
+                    <div class="topic-info">
+                        <h4>游戏手柄操作</h4>
+                        <span>手柄按键映射、摇杆灵敏度、震动反馈设置</span>
+                    </div>
+                </div>
+                <div class="guide-topic">
+                    <div class="topic-icon basic">S</div>
+                    <div class="topic-info">
+                        <h4>游戏设置优化</h4>
+                        <span>画面设置、音效设置、控制台命令</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="guide-card">
+            <div class="guide-header">
+                <div class="guide-category">术语解释</div>
+                <h3 class="guide-title">游戏术语大全：从DPS到MMORPG</h3>
+                <p class="guide-desc">理解游戏圈常用术语，不再做"小白"</p>
+            </div>
+            <div class="guide-body">
+                <div class="guide-topic">
+                    <div class="topic-icon term">B</div>
+                    <div class="topic-info">
+                        <h4>战斗术语</h4>
+                        <span>DPS、Tank、Healer、AOE、DOT、BUFF/DEBUFF</span>
+                    </div>
+                </div>
+                <div class="guide-topic">
+                    <div class="topic-icon term">T</div>
+                    <div class="topic-info">
+                        <h4>游戏类型术语</h4>
+                        <span>RPG、FPS、MOBA、RTS、Roguelike、Metroidvania</span>
+                    </div>
+                </div>
+                <div class="guide-topic">
+                    <div class="topic-icon term">N</div>
+                    <div class="topic-info">
+                        <h4>网络游戏术语</h4>
+                        <span>PVP、PVE、Guild、Raid、LFG、Nerf/Buff</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="guide-card">
+            <div class="guide-header">
+                <div class="guide-category">游戏选购</div>
+                <h3 class="guide-title">如何选择适合自己的游戏：平台与类型指南</h3>
+                <p class="guide-desc">了解各大游戏平台，找到最适合你的游戏</p>
+            </div>
+            <div class="guide-body">
+                <div class="guide-topic">
+                    <div class="topic-icon basic">S</div>
+                    <div class="topic-info">
+                        <h4>Steam平台入门</h4>
+                        <span>账号注册、游戏购买、愿望单使用、退款政策</span>
+                    </div>
+                </div>
+                <div class="guide-topic">
+                    <div class="topic-icon control">E</div>
+                    <div class="topic-info">
+                        <h4>Epic/XGP等平台</h4>
+                        <span>Epic免费游戏领取、XGP订阅指南、平台对比</span>
+                    </div>
+                </div>
+                <div class="guide-topic">
+                    <div class="topic-icon term">R</div>
+                    <div class="topic-info">
+                        <h4>游戏推荐清单</h4>
+                        <span>各类型入门游戏推荐：动作、策略、休闲、剧情</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="guide-card">
+            <div class="guide-header">
+                <div class="guide-category">设备配置</div>
+                <h3 class="guide-title">游戏设备选购与配置优化指南</h3>
+                <p class="guide-desc">从电脑配置到外设选择，打造最佳游戏体验</p>
+            </div>
+            <div class="guide-body">
+                <div class="guide-topic">
+                    <div class="topic-icon basic">P</div>
+                    <div class="topic-info">
+                        <h4>电脑配置指南</h4>
+                        <span>显卡CPU选购、内存硬盘建议、笔记本vs台式机</span>
+                    </div>
+                </div>
+                <div class="guide-topic">
+                    <div class="topic-icon control">M</div>
+                    <div class="topic-info">
+                        <h4>外设推荐</h4>
+                        <span>机械键盘、游戏鼠标、电竞耳机、显示器选购</span>
+                    </div>
+                </div>
+                <div class="guide-topic">
+                    <div class="topic-icon basic">F</div>
+                    <div class="topic-info">
+                        <h4>性能优化</h4>
+                        <span>驱动更新、显卡设置、系统优化、帧数提升技巧</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <h2 class="section-title">新手常见问题</h2>
+    <div class="faq-section">
+        <div class="faq-item">
+            <div class="faq-question">第一次玩游戏应该从什么类型入手？</div>
+            <div class="faq-answer">建议从操作简单、节奏较慢的游戏类型开始，如模拟经营类（星露谷物语）、解谜类（传送门）、休闲冒险类（奇异人生）。逐步熟悉后可以尝试动作类和射击类游戏。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">游戏里的难度选择该怎么选？</div>
+            <div class="faq-answer">绝大多数游戏都推荐选择"普通"或"正常"难度作为首次游玩的选择。游戏制作者通常以此难度为基准进行设计，能获得最平衡的体验。通关后再挑战更高难度。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">需要买很贵的设备才能玩好游戏吗？</div>
+            <div class="faq-answer">不一定。很多优秀的独立游戏对配置要求很低，普通办公电脑就能流畅运行。3A大作才需要较高配置。建议先根据想玩的游戏查看最低配置要求，再决定是否升级设备。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">玩游戏需要看攻略吗？</div>
+            <div class="faq-answer">首次游玩建议不看或少看攻略，独立探索能获得最大的乐趣和成就感。如果卡关超过30分钟或通关后想达成全收集，再看攻略也不迟。</div>
+        </div>
+    </div>
+
+    <h2 class="section-title">推荐资源</h2>
+    <div class="resource-list">
+        <div class="resource-card">
+            <div class="resource-icon">S</div>
+            <div class="resource-info">
+                <h4>Steam</h4>
+                <span>全球最大的PC游戏平台</span>
+            </div>
+        </div>
+        <div class="resource-card">
+            <div class="resource-icon">E</div>
+            <div class="resource-info">
+                <h4>Epic Games</h4>
+                <span>每周免费游戏领取</span>
+            </div>
+        </div>
+        <div class="resource-card">
+            <div class="resource-icon">X</div>
+            <div class="resource-info">
+                <h4>Xbox Game Pass</h4>
+                <span>畅玩数百款游戏</span>
+            </div>
+        </div>
+        <div class="resource-card">
+            <div class="resource-icon">B</div>
+            <div class="resource-info">
+                <h4>B站游戏区</h4>
+                <span>海量游戏实况与评测</span>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>GameGuide 游戏攻略站 &copy; 2026 — 新手入门专题攻略专区</p>
+</footer>
+
+</body>
+</html>
