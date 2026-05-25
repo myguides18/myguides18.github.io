@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾尔登法环攻略专题 - GameGuide游戏攻略站</title>
+    <style>:root {
+    --bg: #0f0f1a;
+    --card-bg: #1a1a2e;
+    --border: #2a2a4a;
+    --accent: #6c5ce7;
+    --accent-hover: #7d6ff0;
+    --text: #e0e0e0;
+    --text-secondary: #a0a0b0;
+    --gold: #f0a500;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+}
+.header {
+    background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 24px;
+}
+.header-inner {
+    max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
+    justify-content: space-between; height: 64px;
+}
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+.hero {
+    border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
+    border: 1px solid var(--border); position: relative; overflow: hidden;
+}
+.hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
+.hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
+.hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.section-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+}
+.section-title::before { content: ''; width: 4px; height: 24px; background: var(--accent); border-radius: 2px; }
+.guide-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-bottom: 20px; transition: border-color 0.2s;
+}
+.guide-card:hover { border-color: var(--accent); }
+.guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.guide-card .placeholder-img {
+    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
+    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
+    font-size: 14px; flex-direction: column; gap: 8px;
+}
+.footer {
+    text-align: center; padding: 32px; border-top: 1px solid var(--border);
+    color: var(--text-secondary); font-size: 13px;
+}
+@media (max-width: 768px) {
+    .hero { padding: 32px 20px; }
+    .hero h1 { font-size: 24px; }
+    .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo">Game<span>Guide</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="index.html">PC游戏</a></li>
+            <li><a href="index.html">手游攻略</a></li>
+            <li><a href="index.html">主机游戏</a></li>
+            <li><a href="index.html">新游评测</a></li>
+        </ul>
+    </div>
+</header>
+<main class="main">
+    <section class="hero" style="background: linear-gradient(135deg, #1a1a2e, #2d1b69);">
+        <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">⚔️</div>
+        <h1>艾尔登法环攻略专题</h1>
+        <div class="subtitle">Elden Ring</div>
+        <p>《艾尔登法环》是FromSoftware开发、万代南梦宫发行的开放世界动作RPG。游戏由宫崎英高与乔治·R·R·马丁联手打造，构建了宏大而深邃的「交界地」世界。本专题涵盖全BOSS打法、全地图探索、全结局触发条件等深度攻略内容。</p>
+    </section>
+    <section>
+        <h2 class="section-title">攻略内容</h2>
+        
+            <div class="guide-card">
+                <h3>全BOSS攻略</h3>
+                <p>从恶兆妖鬼到艾尔登之兽，每一个主线BOSS的战斗模式、弱点属性与最佳应对策略。包含第一阶段与第二阶段的招式拆解，以及各职业推荐武器配置。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>全地图探索指南</h3>
+                <p>宁姆格福、利耶尼亚、盖利德、亚坛高原、巨人山顶——五大区域的完整探索路线图。标注全部赐福点、地下墓地、封印监牢与隐藏通道位置。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>全结局触发条件</h3>
+                <p>艾尔登之王、星星时代、癫火之王等六大结局的详细触发流程。含菈妮支线、菲雅支线、食粪者支线的完整攻略。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>武器与战灰推荐</h3>
+                <p>各流派最强武器推荐：力量流巨剑、敏捷流打刀、信仰流圣印记、智力流法杖。战灰搭配方案与强化石获取路线。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+    </section>
+</main>
+<footer class="footer">
+    <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
+</footer>
+</body>
+</html>

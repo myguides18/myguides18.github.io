@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博德之门3攻略专题 - GameGuide游戏攻略站</title>
+    <style>:root {
+    --bg: #0f0f1a;
+    --card-bg: #1a1a2e;
+    --border: #2a2a4a;
+    --accent: #6c5ce7;
+    --accent-hover: #7d6ff0;
+    --text: #e0e0e0;
+    --text-secondary: #a0a0b0;
+    --gold: #f0a500;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+}
+.header {
+    background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 24px;
+}
+.header-inner {
+    max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
+    justify-content: space-between; height: 64px;
+}
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+.hero {
+    border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
+    border: 1px solid var(--border); position: relative; overflow: hidden;
+}
+.hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
+.hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
+.hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.section-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+}
+.section-title::before { content: ''; width: 4px; height: 24px; background: var(--accent); border-radius: 2px; }
+.guide-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-bottom: 20px; transition: border-color 0.2s;
+}
+.guide-card:hover { border-color: var(--accent); }
+.guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.guide-card .placeholder-img {
+    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
+    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
+    font-size: 14px; flex-direction: column; gap: 8px;
+}
+.footer {
+    text-align: center; padding: 32px; border-top: 1px solid var(--border);
+    color: var(--text-secondary); font-size: 13px;
+}
+@media (max-width: 768px) {
+    .hero { padding: 32px 20px; }
+    .hero h1 { font-size: 24px; }
+    .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo">Game<span>Guide</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="index.html">PC游戏</a></li>
+            <li><a href="index.html">手游攻略</a></li>
+            <li><a href="index.html">主机游戏</a></li>
+            <li><a href="index.html">新游评测</a></li>
+        </ul>
+    </div>
+</header>
+<main class="main">
+    <section class="hero" style="background: linear-gradient(135deg, #1a1a1a, #3a2a1a);">
+        <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🐉</div>
+        <h1>博德之门3攻略专题</h1>
+        <div class="subtitle">Baldur's Gate 3</div>
+        <p>《博德之门3》是Larian Studios开发的基于D&D 5e规则的CRPG巨作。玩家在被遗忘的国度中展开史诗冒险，每一个选择都将影响故事走向。本专题聚焦荣誉模式通关、职业Build与剧情分支。</p>
+    </section>
+    <section>
+        <h2 class="section-title">攻略内容</h2>
+        
+            <div class="guide-card">
+                <h3>荣誉模式完全攻略</h3>
+                <p>荣誉模式下所有BOSS战的安全打法、避免团灭的保命技巧与必拿的关键装备。各章节最危险遭遇战的分析与应对策略。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>职业Build推荐</h3>
+                <p>剑刃诗人、风暴牧师、投掷野蛮人、光明领域牧师等强力Build的详细加点和装备搭配。多职业兼职的最优组合方案。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>全队友剧情与恋爱线</h3>
+                <p>影心、阿斯代伦、盖尔、卡菈克等全部起源角色的个人任务全流程。各角色好感度提升技巧与浪漫剧情触发条件。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>关键抉择与多结局</h3>
+                <p>剧情中的重大抉择点及其后续影响分析。所有结局的触发条件、前置任务与最终战斗的不同走向。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+    </section>
+</main>
+<footer class="footer">
+    <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
+</footer>
+</body>
+</html>

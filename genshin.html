@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原神攻略专题 - GameGuide游戏攻略站</title>
+    <style>:root {
+    --bg: #0f0f1a;
+    --card-bg: #1a1a2e;
+    --border: #2a2a4a;
+    --accent: #6c5ce7;
+    --accent-hover: #7d6ff0;
+    --text: #e0e0e0;
+    --text-secondary: #a0a0b0;
+    --gold: #f0a500;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+}
+.header {
+    background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 24px;
+}
+.header-inner {
+    max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
+    justify-content: space-between; height: 64px;
+}
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+.hero {
+    border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
+    border: 1px solid var(--border); position: relative; overflow: hidden;
+}
+.hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
+.hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
+.hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.section-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+}
+.section-title::before { content: ''; width: 4px; height: 24px; background: var(--accent); border-radius: 2px; }
+.guide-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-bottom: 20px; transition: border-color 0.2s;
+}
+.guide-card:hover { border-color: var(--accent); }
+.guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.guide-card .placeholder-img {
+    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
+    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
+    font-size: 14px; flex-direction: column; gap: 8px;
+}
+.footer {
+    text-align: center; padding: 32px; border-top: 1px solid var(--border);
+    color: var(--text-secondary); font-size: 13px;
+}
+@media (max-width: 768px) {
+    .hero { padding: 32px 20px; }
+    .hero h1 { font-size: 24px; }
+    .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo">Game<span>Guide</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="index.html">PC游戏</a></li>
+            <li><a href="index.html">手游攻略</a></li>
+            <li><a href="index.html">主机游戏</a></li>
+            <li><a href="index.html">新游评测</a></li>
+        </ul>
+    </div>
+</header>
+<main class="main">
+    <section class="hero" style="background: linear-gradient(135deg, #2a1a1a, #1a2a3a);">
+        <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🏹</div>
+        <h1>原神攻略专题</h1>
+        <div class="subtitle">Genshin Impact</div>
+        <p>《原神》是米哈游开发的开放世界冒险RPG。玩家在提瓦特大陆上自由探索，邂逅性格各异的伙伴。本专题聚焦深渊攻略、角色培养、版本活动等实用内容。</p>
+    </section>
+    <section>
+        <h2 class="section-title">攻略内容</h2>
+        
+            <div class="guide-card">
+                <h3>深渊螺旋满星攻略</h3>
+                <p>5.6版本深渊12层环境分析与推荐阵容。上半与下半的最优配队方案、怪物刷新规律与元素克制策略。平民阵容也能轻松拿满星。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>新角色强度评测</h3>
+                <p>最新五星角色的强度分析、推荐武器与圣遗物搭配。各命座提升幅度测算，以及在各主流队伍中的实战表现。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>圣遗物刷取效率指南</h3>
+                <p>各角色最优圣遗物套装选择，刷取副本的路线规划与树脂分配策略。合成台三合一素材的利用技巧。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>探索与解谜</h3>
+                <p>新区域全神瞳位置、隐藏任务触发条件、复杂机关解谜步骤的图文攻略。世界任务全流程与隐藏成就解锁方法。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+    </section>
+</main>
+<footer class="footer">
+    <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
+</footer>
+</body>
+</html>

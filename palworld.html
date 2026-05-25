@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幻兽帕鲁攻略专题 - GameGuide游戏攻略站</title>
+    <style>:root {
+    --bg: #0f0f1a;
+    --card-bg: #1a1a2e;
+    --border: #2a2a4a;
+    --accent: #6c5ce7;
+    --accent-hover: #7d6ff0;
+    --text: #e0e0e0;
+    --text-secondary: #a0a0b0;
+    --gold: #f0a500;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+}
+.header {
+    background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 24px;
+}
+.header-inner {
+    max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
+    justify-content: space-between; height: 64px;
+}
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+.hero {
+    border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
+    border: 1px solid var(--border); position: relative; overflow: hidden;
+}
+.hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
+.hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
+.hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.section-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+}
+.section-title::before { content: ''; width: 4px; height: 24px; background: var(--accent); border-radius: 2px; }
+.guide-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-bottom: 20px; transition: border-color 0.2s;
+}
+.guide-card:hover { border-color: var(--accent); }
+.guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.guide-card .placeholder-img {
+    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
+    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
+    font-size: 14px; flex-direction: column; gap: 8px;
+}
+.footer {
+    text-align: center; padding: 32px; border-top: 1px solid var(--border);
+    color: var(--text-secondary); font-size: 13px;
+}
+@media (max-width: 768px) {
+    .hero { padding: 32px 20px; }
+    .hero h1 { font-size: 24px; }
+    .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo">Game<span>Guide</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="index.html">PC游戏</a></li>
+            <li><a href="index.html">手游攻略</a></li>
+            <li><a href="index.html">主机游戏</a></li>
+            <li><a href="index.html">新游评测</a></li>
+        </ul>
+    </div>
+</header>
+<main class="main">
+    <section class="hero" style="background: linear-gradient(135deg, #1a1a3a, #2a2a1a);">
+        <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🎮</div>
+        <h1>幻兽帕鲁攻略专题</h1>
+        <div class="subtitle">Palworld</div>
+        <p>《幻兽帕鲁》是一款集生存建造、宠物收集与射击战斗于一体的开放世界游戏。在广阔的世界中捕捉「帕鲁」伙伴，建设基地、制作装备、挑战强敌。本专题从新手入门到后期进阶一应俱全。</p>
+    </section>
+    <section>
+        <h2 class="section-title">攻略内容</h2>
+        
+            <div class="guide-card">
+                <h3>新手开荒完全指南</h3>
+                <p>从第一天开始的完整开荒流程：初期最强帕鲁捕捉顺序、基础资源获取优先级、基地选址建议与第一台工作台的搭建。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>配种公式大全</h3>
+                <p>最新版本全帕鲁配种组合表。稀有帕鲁的最优配种路线、被动技能遗传机制详解与完美帕鲁的培育策略。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>基地建设最优方案</h3>
+                <p>生产效率最大化的基地布局设计。帕鲁工作分配的效率原则、自动化产线的搭建方法，以及防御设施的合理部署。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>高塔BOSS挑战攻略</h3>
+                <p>各高塔BOSS的属性弱点与推荐帕鲁阵容。单人与多人模式的最佳战术差异，以及各BOSS的专属掉落物一览。</p>
+                <div class="placeholder-img">
+                    <span style="font-size:32px">📷</span>
+                    <span>攻略配图占位区域</span>
+                </div>
+            </div>
+    </section>
+</main>
+<footer class="footer">
+    <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
+</footer>
+</body>
+</html>
