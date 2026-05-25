@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>博德之门3攻略专题 - GameGuide游戏攻略站</title>
+    <meta name="description" content="博德之门3最全攻略：《博德之门3》是Larian Studios开发的CRPG巨作，基于龙与地下城（D&D）第五版规则。游戏以被遗忘的国度费伦大陆为舞台，玩家将带领队伍对抗夺心魔的...">
     <style>:root {
     --bg: #0f0f1a;
     --card-bg: #1a1a2e;
@@ -13,6 +14,7 @@
     --text: #e0e0e0;
     --text-secondary: #a0a0b0;
     --gold: #f0a500;
+    --tag-bg: #252540;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -27,11 +29,21 @@ body {
     max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
     justify-content: space-between; height: 64px;
 }
-.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
+.search-box { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.search-box input { background: transparent; border: none; color: var(--text); padding: 8px 16px; font-size: 14px; width: 180px; outline: none; }
+.search-box input::placeholder { color: var(--text-secondary); }
+.search-box button { background: var(--accent); border: none; color: white; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+.search-box button:hover { background: var(--accent-hover); }
+.theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text); font-size: 18px;
+    cursor: pointer; padding: 6px 10px; border-radius: 8px; margin-left: 8px; transition: border-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
 .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 .hero {
     border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
@@ -40,6 +52,10 @@ body {
 .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
 .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
 .hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.hero-banner {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;
+    position: relative; z-index: 1; opacity: 0.8;
+}
 .section-title {
     font-size: 20px; font-weight: 700; margin-bottom: 20px;
     display: flex; align-items: center; gap: 12px;
@@ -51,12 +67,75 @@ body {
 }
 .guide-card:hover { border-color: var(--accent); }
 .guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
-.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-.guide-card .placeholder-img {
-    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-    font-size: 14px; flex-direction: column; gap: 8px;
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-line; }
+.guide-card .guide-img {
+    width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-top: 16px;
+    display: block; border: 1px solid var(--border);
 }
+/* 广告位样式 */
+.ad-container {
+    text-align: center; margin: 20px 0; padding: 20px;
+    background: var(--border); border: 2px dashed var(--accent);
+    border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;
+}
+.ad-banner {
+    width: 100%; max-width: 728px; height: 90px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+.ad-skyscraper {
+    width: 300px; height: 600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+/* 评论区 */
+.comment-section {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-top: 32px;
+}
+.comment-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.comment-form input, .comment-form textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-size: 14px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+}
+.comment-form input:focus, .comment-form textarea:focus { border-color: var(--accent); }
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-submit {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    align-self: flex-start; transition: background 0.2s;
+}
+.comment-submit:hover { background: var(--accent-hover); }
+.comment-list { display: flex; flex-direction: column; gap: 16px; }
+.comment-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+}
+.comment-item .comment-author { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.comment-item .comment-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.comment-item .comment-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+/* 订阅区块 */
+.subscribe-section {
+    background: linear-gradient(135deg, var(--card-bg), #2d1b69);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px; text-align: center; margin: 32px 0;
+}
+.subscribe-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.subscribe-section p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.subscribe-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.subscribe-form input {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 16px; font-size: 14px; outline: none;
+    width: 300px; max-width: 100%; transition: border-color 0.2s;
+}
+.subscribe-form input:focus { border-color: var(--accent); }
+.subscribe-form button {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.subscribe-form button:hover { background: var(--accent-hover); }
 .footer {
     text-align: center; padding: 32px; border-top: 1px solid var(--border);
     color: var(--text-secondary); font-size: 13px;
@@ -65,6 +144,11 @@ body {
     .hero { padding: 32px 20px; }
     .hero h1 { font-size: 24px; }
     .nav-links { display: none; }
+    .search-box input { width: 100px; }
+    .ad-banner { max-width: 320px; height: 100px; }
+    .ad-skyscraper { width: 300px; height: 400px; }
+    .subscribe-form { flex-direction: column; align-items: center; }
+    .subscribe-form input { width: 100%; }
 }
 </style>
 </head>
@@ -79,54 +163,224 @@ body {
             <li><a href="index.html">主机游戏</a></li>
             <li><a href="index.html">新游评测</a></li>
         </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索游戏攻略...">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换夜间/日间模式">🌙</button>
     </div>
 </header>
+
+<!-- 头部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
 <main class="main">
-    <section class="hero" style="background: linear-gradient(135deg, #1a1a1a, #3a2a1a);">
+    <section class="hero" style="background: linear-gradient(135deg, #1a1a2a, #3a2a1a);">
         <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🐉</div>
         <h1>博德之门3攻略专题</h1>
         <div class="subtitle">Baldur's Gate 3</div>
-        <p>《博德之门3》是Larian Studios开发的基于D&D 5e规则的CRPG巨作。玩家在被遗忘的国度中展开史诗冒险，每一个选择都将影响故事走向。本专题聚焦荣誉模式通关、职业Build与剧情分支。</p>
+        <p>《博德之门3》是Larian Studios开发的CRPG巨作，基于龙与地下城（D&D）第五版规则。游戏以被遗忘的国度费伦大陆为舞台，玩家将带领队伍对抗夺心魔的威胁。</p>
+        <img class="hero-banner" src="https://picsum.photos/1200/400?random=9" alt="博德之门3游戏Banner" loading="lazy" onerror="this.style.display='none'">
     </section>
+
     <section>
         <h2 class="section-title">攻略内容</h2>
         
             <div class="guide-card">
-                <h3>荣誉模式完全攻略</h3>
-                <p>荣誉模式下所有BOSS战的安全打法、避免团灭的保命技巧与必拿的关键装备。各章节最危险遭遇战的分析与应对策略。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>一、游戏简介</h3>
+                <p>《博德之门3》于2023年8月3日正式发售，登陆PC和PS5平台，荣获2023年TGA年度游戏大奖。游戏采用D&D 5E规则，包含12个职业、46个子职业、11个可招募种族。
+
+故事从玩家被夺心魔蝌蚪寄生开始，需要在蝌蚪将你转化为夺心魔之前找到解药。游戏以章节制推进，共三章：第一章荒野+幽暗地域、第二章暗影诅咒之地、第三章博德之门城市。游戏以极高的自由度和深度的角色扮演著称，玩家的每个选择都会影响故事走向。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=90" alt="博德之门3 - 一、游戏简介" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>职业Build推荐</h3>
-                <p>剑刃诗人、风暴牧师、投掷野蛮人、光明领域牧师等强力Build的详细加点和装备搭配。多职业兼职的最优组合方案。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>二、职业与队伍搭配</h3>
+                <p>【推荐职业】
+- 圣武士：高爆发+治疗+光环，最强前排职业。至圣斩配合高环法术位伤害爆炸。
+- 术士：超魔法灵活多变，加速+瞬发法术一回合多次施法。风暴术士的飞行能力提供极高机动性。
+- 吟游诗人：万能职业，剑刃学院可近战可施法，巧手专精开锁拆陷阱。
+- 战士：战斗大师子职，战术动作丰富，动作如潮一回合多打。
+
+【推荐队伍配置】
+- 主角：圣武士（前排输出+坦克+治疗）
+- 影心：光明牧师（AOE伤害+群体治疗+祝福术）
+- 盖尔：塑能法师（AOE法术+控制+火球术）
+- 阿斯代伦：盗贼/游侠（远程输出+开锁+潜行偷袭）
+
+【荣誉模式队伍】
+荣誉模式只有1个存档，全灭即删档。推荐：圣武士（主角）+光明牧师（影心）+战斗大师战士（莱埃泽尔）+风暴术士（盖尔）。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=91" alt="博德之门3 - 二、职业与队伍搭配" loading="lazy">
+            </div>
+            <div class="ad-container">
+                <div class="ad-skyscraper">广告位预留 - 300x600</div>
             </div>
             <div class="guide-card">
-                <h3>全队友剧情与恋爱线</h3>
-                <p>影心、阿斯代伦、盖尔、卡菈克等全部起源角色的个人任务全流程。各角色好感度提升技巧与浪漫剧情触发条件。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>三、关键剧情选择指南</h3>
+                <p>【第一章关键选择】
+- 德鲁伊林地 vs 地精营地：帮助德鲁伊获得更多后续盟友，帮助地精可获得明萨拉（圣武士队友）。
+- 是否使用蝌蚪力量：使用蝌蚪可解锁夺心魔技能树，但会影响结局选项。
+- 是否救出哈尔辛：救出哈尔辛是解除暗影诅咒的关键。
+
+【第二章关键选择】
+- 月出之塔：是否释放艾琳女士（暗夜之歌）是本章最大转折点。释放她会导致月出之塔全面开战，但获得强力盟友。
+- 是否帮助巴扎萨尔：帮助他会失去艾琳女士的信任。
+
+【第三章关键选择】
+- 是否与戈塔什结盟：结盟可避免一场BOSS战，但会影响结局。
+- 是否释放俄耳甫斯：释放他需要俄耳甫斯之锤，会影响最终战和结局。
+- 是否成为夺心魔：成为夺心魔获得强大力量，但失去灵魂。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=92" alt="博德之门3 - 三、关键剧情选择指南" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>关键抉择与多结局</h3>
-                <p>剧情中的重大抉择点及其后续影响分析。所有结局的触发条件、前置任务与最终战斗的不同走向。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>四、战斗技巧与强力Build</h3>
+                <p>【战斗基础技巧】
+1. 高地优势：远程攻击从高处打低处获得+2命中加成。
+2. 环境利用：推人下悬崖、打爆火药桶、淋油点火等环境互动伤害极高。
+3. 潜行开战：让盗贼潜行接近敌人，偷袭开战获得突袭轮。
+4. 专注管理：施法者保持专注法术（加速术、祝福术），避免被打断。
+
+【强力Build推荐】
+- 圣武士5+术士5+战士2：至圣斩+超魔法+动作如潮，一回合可打出4次至圣斩。
+- 游侠5+盗贼4+战士3：双持手弩，一回合4次攻击+偷袭伤害。
+- 武僧9+盗贼3：疾风连击+额外附赠动作，一回合多次攻击。
+- 术士2+风暴牧师10：引导神力最大化闪电伤害，一发闪电链清场。</p>
+                
+            </div>
+            <div class="guide-card">
+                <h3>五、常见问题FAQ</h3>
+                <p>Q：需要玩过前作吗？
+A：不需要。博德之门3的故事独立完整，新玩家可以无障碍体验。但玩过前作会发现很多彩蛋和致敬。
+
+Q：游戏时长多少？
+A：主线约60-80小时，全支线约120-150小时，全成就约200小时以上。
+
+Q：荣誉模式有多难？
+A：荣誉模式BOSS有额外传奇动作，且只有1个存档。建议先通关普通模式熟悉流程再挑战。
+
+Q：可以洗点吗？
+A：可以。在营地找守墓人（威瑟斯），花费100金币即可重置职业和属性。</p>
+                
             </div>
     </section>
+
+    <!-- 评论区 -->
+    <section class="comment-section">
+        <h2>发表评论</h2>
+        <div class="comment-form">
+            <input type="text" placeholder="你的昵称" id="commentName">
+            <input type="email" placeholder="邮箱（选填）" id="commentEmail">
+            <textarea placeholder="写下你的评论..." id="commentText"></textarea>
+            <button class="comment-submit" onclick="submitComment()">发表评论</button>
+        </div>
+        <div class="comment-list" id="commentList">
+            
+                <div class="comment-item">
+                    <div class="comment-author">游戏达人小王</div>
+                    <div class="comment-date">2026-05-22</div>
+                    <div class="comment-text">这篇攻略太详细了！照着打终于过了卡了很久的BOSS，感谢作者！</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">新手玩家阿明</div>
+                    <div class="comment-date">2026-05-20</div>
+                    <div class="comment-text">作为刚入坑的新手，这篇攻略对我帮助很大。希望能更新更多配装推荐。</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">硬核玩家老李</div>
+                    <div class="comment-date">2026-05-18</div>
+                    <div class="comment-text">内容很全面，但希望能补充更多高端技巧和隐藏内容。期待更新！</div>
+                </div>
+        </div>
+    </section>
 </main>
+
+<!-- 底部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
+<!-- 订阅区块 -->
+<section class="subscribe-section">
+    <h2>订阅最新攻略</h2>
+    <p>每周推送最新游戏攻略，不错过任何更新</p>
+    <div class="subscribe-form">
+        <input type="email" placeholder="输入你的邮箱地址" id="subscribeEmail">
+        <button onclick="doSubscribe()">立即订阅</button>
+    </div>
+</section>
+
 <footer class="footer">
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
+
+<script>
+// 搜索功能
+function doSearch() {
+    var q = document.getElementById('searchInput').value.trim();
+    if (q) { window.location.href = 'search.html?q=' + encodeURIComponent(q); }
+}
+
+// 夜间模式切换
+(function() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+        document.documentElement.style.setProperty('--bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--border', '#e0e0e0');
+        document.documentElement.style.setProperty('--text', '#1a1a1a');
+        document.documentElement.style.setProperty('--text-secondary', '#666666');
+        document.documentElement.style.setProperty('--tag-bg', '#f0f0f0');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+})();
+
+function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    if (btn.textContent === '🌙') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--card-bg', '#ffffff');
+        root.style.setProperty('--border', '#e0e0e0');
+        root.style.setProperty('--text', '#1a1a1a');
+        root.style.setProperty('--text-secondary', '#666666');
+        root.style.setProperty('--tag-bg', '#f0f0f0');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        root.style.setProperty('--bg', '#0f0f1a');
+        root.style.setProperty('--card-bg', '#1a1a2e');
+        root.style.setProperty('--border', '#2a2a4a');
+        root.style.setProperty('--text', '#e0e0e0');
+        root.style.setProperty('--text-secondary', '#a0a0b0');
+        root.style.setProperty('--tag-bg', '#252540');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// 评论提交
+function submitComment() {
+    var name = document.getElementById('commentName').value.trim();
+    var text = document.getElementById('commentText').value.trim();
+    if (!name || !text) { alert('请填写昵称和评论内容'); return; }
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var div = document.createElement('div');
+    div.className = 'comment-item';
+    div.innerHTML = '<div class="comment-author">' + name + '</div><div class="comment-date">' + dateStr + '</div><div class="comment-text">' + text + '</div>';
+    document.getElementById('commentList').prepend(div);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentText').value = '';
+}
+
+// 订阅
+function doSubscribe() {
+    var email = document.getElementById('subscribeEmail').value.trim();
+    if (!email) { alert('请输入邮箱地址'); return; }
+    alert('感谢订阅！我们会将最新攻略发送到 ' + email);
+    document.getElementById('subscribeEmail').value = '';
+}
+</script>
 </body>
 </html>

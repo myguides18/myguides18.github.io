@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>塞尔达传说：王国之泪攻略专题 - GameGuide游戏攻略站</title>
+    <meta name="description" content="塞尔达传说：王国之泪最全攻略：《塞尔达传说：王国之泪》是任天堂开发的开放世界动作冒险游戏，为《旷野之息》的正统续作。林克将探索海拉鲁的天空、地面和地底三层世界，利用全新能力解开谜题、击败敌人...">
     <style>:root {
     --bg: #0f0f1a;
     --card-bg: #1a1a2e;
@@ -13,6 +14,7 @@
     --text: #e0e0e0;
     --text-secondary: #a0a0b0;
     --gold: #f0a500;
+    --tag-bg: #252540;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -27,11 +29,21 @@ body {
     max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
     justify-content: space-between; height: 64px;
 }
-.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
+.search-box { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.search-box input { background: transparent; border: none; color: var(--text); padding: 8px 16px; font-size: 14px; width: 180px; outline: none; }
+.search-box input::placeholder { color: var(--text-secondary); }
+.search-box button { background: var(--accent); border: none; color: white; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+.search-box button:hover { background: var(--accent-hover); }
+.theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text); font-size: 18px;
+    cursor: pointer; padding: 6px 10px; border-radius: 8px; margin-left: 8px; transition: border-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
 .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 .hero {
     border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
@@ -40,6 +52,10 @@ body {
 .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
 .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
 .hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.hero-banner {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;
+    position: relative; z-index: 1; opacity: 0.8;
+}
 .section-title {
     font-size: 20px; font-weight: 700; margin-bottom: 20px;
     display: flex; align-items: center; gap: 12px;
@@ -51,12 +67,75 @@ body {
 }
 .guide-card:hover { border-color: var(--accent); }
 .guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
-.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-.guide-card .placeholder-img {
-    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-    font-size: 14px; flex-direction: column; gap: 8px;
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-line; }
+.guide-card .guide-img {
+    width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-top: 16px;
+    display: block; border: 1px solid var(--border);
 }
+/* 广告位样式 */
+.ad-container {
+    text-align: center; margin: 20px 0; padding: 20px;
+    background: var(--border); border: 2px dashed var(--accent);
+    border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;
+}
+.ad-banner {
+    width: 100%; max-width: 728px; height: 90px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+.ad-skyscraper {
+    width: 300px; height: 600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+/* 评论区 */
+.comment-section {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-top: 32px;
+}
+.comment-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.comment-form input, .comment-form textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-size: 14px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+}
+.comment-form input:focus, .comment-form textarea:focus { border-color: var(--accent); }
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-submit {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    align-self: flex-start; transition: background 0.2s;
+}
+.comment-submit:hover { background: var(--accent-hover); }
+.comment-list { display: flex; flex-direction: column; gap: 16px; }
+.comment-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+}
+.comment-item .comment-author { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.comment-item .comment-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.comment-item .comment-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+/* 订阅区块 */
+.subscribe-section {
+    background: linear-gradient(135deg, var(--card-bg), #2d1b69);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px; text-align: center; margin: 32px 0;
+}
+.subscribe-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.subscribe-section p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.subscribe-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.subscribe-form input {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 16px; font-size: 14px; outline: none;
+    width: 300px; max-width: 100%; transition: border-color 0.2s;
+}
+.subscribe-form input:focus { border-color: var(--accent); }
+.subscribe-form button {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.subscribe-form button:hover { background: var(--accent-hover); }
 .footer {
     text-align: center; padding: 32px; border-top: 1px solid var(--border);
     color: var(--text-secondary); font-size: 13px;
@@ -65,6 +144,11 @@ body {
     .hero { padding: 32px 20px; }
     .hero h1 { font-size: 24px; }
     .nav-links { display: none; }
+    .search-box input { width: 100px; }
+    .ad-banner { max-width: 320px; height: 100px; }
+    .ad-skyscraper { width: 300px; height: 400px; }
+    .subscribe-form { flex-direction: column; align-items: center; }
+    .subscribe-form input { width: 100%; }
 }
 </style>
 </head>
@@ -79,54 +163,235 @@ body {
             <li><a href="index.html">主机游戏</a></li>
             <li><a href="index.html">新游评测</a></li>
         </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索游戏攻略...">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换夜间/日间模式">🌙</button>
     </div>
 </header>
+
+<!-- 头部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
 <main class="main">
     <section class="hero" style="background: linear-gradient(135deg, #2a1a2a, #1a2a2a);">
         <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🏰</div>
         <h1>塞尔达传说：王国之泪攻略专题</h1>
-        <div class="subtitle">The Legend of Zelda: Tears of the Kingdom</div>
-        <p>《塞尔达传说：王国之泪》是任天堂推出的开放世界动作冒险游戏。故事承接《旷野之息》，林克将探索海拉鲁的天空、地面与地底三层世界。本专题提供全神庙解谜、全装备获取等深度攻略。</p>
+        <div class="subtitle">Zelda: Tears of the Kingdom</div>
+        <p>《塞尔达传说：王国之泪》是任天堂开发的开放世界动作冒险游戏，为《旷野之息》的正统续作。林克将探索海拉鲁的天空、地面和地底三层世界，利用全新能力解开谜题、击败敌人。</p>
+        <img class="hero-banner" src="https://picsum.photos/1200/400?random=5" alt="塞尔达传说：王国之泪游戏Banner" loading="lazy" onerror="this.style.display='none'">
     </section>
+
     <section>
         <h2 class="section-title">攻略内容</h2>
         
             <div class="guide-card">
-                <h3>全152座神庙解谜攻略</h3>
-                <p>天空、地面、地底三层所有神庙的精确位置标注与解谜思路。每座神庙的进入条件、核心谜题机制与通关步骤详解。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>一、游戏简介</h3>
+                <p>《王国之泪》于2023年5月12日在Nintendo Switch平台发售，首周销量突破1000万份。游戏延续了前作的开放世界设计，但地图规模扩大了三倍——新增了天空群岛和地底世界。
+
+本作的核心创新在于林克的新能力：究极手（拼接物体建造载具）、余料建造（将材料融合到武器上）、通天术（穿透天花板向上移动）、倒转乾坤（逆转物体的运动轨迹）。这些能力极大地拓展了游戏的创造性和自由度，玩家可以建造各种奇妙的装置来解决谜题和战斗。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=50" alt="塞尔达传说：王国之泪 - 一、游戏简介" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>左纳乌装置玩法大全</h3>
-                <p>全左纳乌装置的功能说明、组合技巧与创意建造方案。从基础载具到复杂战争机器的搭建教程。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>二、全神庙位置与解谜攻略</h3>
+                <p>游戏共有152座神庙（天空32座+地面120座），完成神庙可获得祝福之光，4个祝福之光可兑换1颗心或1/5圈精力。
+
+【天空神庙推荐路线】
+1. 初始空岛：4座神庙（教程关，必过）
+2. 北海拉鲁天空：5座神庙，难度较低
+3. 费罗尼天空：6座神庙，需要飞行装置
+4. 雷龙天空：4座神庙，需要防雷装备
+
+【地面神庙分布】
+- 中央海拉鲁：18座，多为战斗教学
+- 赫布拉地区：15座，寒冷环境需防寒装备
+- 奥尔汀地区：12座，高温环境需防火装备
+- 格鲁德地区：14座，沙漠环境需防暑装备
+- 费罗尼地区：16座，雷雨天气频繁
+
+【地底探索技巧】
+地底世界完全黑暗，需要投掷「光亮花的种子」照明。地底有120个树根，每个树根对应地面一座神庙的位置。建议先在地面标记神庙位置，再到地底对应位置找树根。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=51" alt="塞尔达传说：王国之泪 - 二、全神庙位置与解谜攻略" loading="lazy">
+            </div>
+            <div class="ad-container">
+                <div class="ad-skyscraper">广告位预留 - 300x600</div>
             </div>
             <div class="guide-card">
-                <h3>全装备与武器获取</h3>
-                <p>英杰服、海利亚盾、大师剑等关键装备的获取条件与升级材料。各区域最强武器刷新位置与耐久度机制说明。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>三、最强装备获取指南</h3>
+                <p>【武器推荐】
+- 大师剑：完成龙之泪全部记忆后自动获得，攻击力30，对瘴气敌人伤害翻倍。
+- 英杰武器：完成四地区主线后获得，各有特殊效果。
+- 近卫双手剑：海拉鲁城堡获取，基础攻击力高，余料建造后更强。
+
+【防具推荐】
+- 蛮族套：增加攻击力，三件套效果为蓄力攻击精力消耗减少。
+- 鬼神套：增加攻击力，外观酷炫，三件套效果同蛮族套。
+- 古代勇者之魂：完成全部152座神庙后获得，防御力最高。
+- 滑翔套：从高处跳下无伤害，探索天空必备。
+
+【余料建造推荐搭配】
+- 白银莱尼尔的刃角 + 任何武器 = 攻击力+55
+- 古栗欧克的角 + 盾牌 = 盾牌附带元素攻击
+- 火箭 + 盾牌 = 盾牌跳跃时起飞
+- 弹簧 + 盾牌 = 盾牌跳跃时弹跳</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=52" alt="塞尔达传说：王国之泪 - 三、最强装备获取指南" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>地底世界探索指南</h3>
-                <p>地底全树根点亮路线、暗之魔人分布地图与讨伐策略。魄的收集路线与魔像制造房的解锁流程。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>四、左纳乌装置建造指南</h3>
+                <p>左纳乌装置是王国之泪最具创造性的系统，以下是最实用的几种建造方案：
+
+【基础载具】
+- 飞天摩托：操纵杆+2个风扇（前后各一），最常用的空中交通工具，耗电低，操控性好。
+- 悬浮平台：操纵杆+4个风扇（四角各一），稳定性好，适合运输。
+- 高速车：操纵杆+4个轮胎+1个风扇（后方推进），地面最快载具。
+
+【战斗装置】
+- 自动炮台：操纵杆+多个大炮/光线头，放在敌人营地附近自动攻击。
+- 追踪车：操纵杆+轮胎+追踪平台车+大炮，自动追踪并攻击敌人。
+- 陷阱：定时炸弹+各种元素装置，布置在敌人巡逻路线上。
+
+【探索装置】
+- 热气球：平台+火焰喷射器+气球，垂直上升探索高处。
+- 火箭盾：盾牌+火箭，瞬间弹射到高空。
+- 弹簧鞋：盾牌+弹簧，跳跃高度大幅提升。</p>
+                
+            </div>
+            <div class="guide-card">
+                <h3>五、常见问题FAQ</h3>
+                <p>Q：需要先玩旷野之息吗？
+A：不需要，王国之泪有独立完整的故事。但玩过前作会对世界观和角色有更深理解。
+
+Q：电池怎么升级？
+A：收集左纳乌矿石，到初始空岛的炼制魔像处兑换「结晶」，100个结晶换1格电池。地底世界有大量左纳乌矿石。
+
+Q：如何快速赚钱？
+A：打猎卖烤肉、采矿卖宝石、完成迷你挑战。最快的方式是刷稀有岩石巨人，掉落大量宝石。
+
+Q：游戏时长多少？
+A：主线约50小时，全神庙约100小时，全收集约200小时以上。</p>
+                
             </div>
     </section>
+
+    <!-- 评论区 -->
+    <section class="comment-section">
+        <h2>发表评论</h2>
+        <div class="comment-form">
+            <input type="text" placeholder="你的昵称" id="commentName">
+            <input type="email" placeholder="邮箱（选填）" id="commentEmail">
+            <textarea placeholder="写下你的评论..." id="commentText"></textarea>
+            <button class="comment-submit" onclick="submitComment()">发表评论</button>
+        </div>
+        <div class="comment-list" id="commentList">
+            
+                <div class="comment-item">
+                    <div class="comment-author">游戏达人小王</div>
+                    <div class="comment-date">2026-05-22</div>
+                    <div class="comment-text">这篇攻略太详细了！照着打终于过了卡了很久的BOSS，感谢作者！</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">新手玩家阿明</div>
+                    <div class="comment-date">2026-05-20</div>
+                    <div class="comment-text">作为刚入坑的新手，这篇攻略对我帮助很大。希望能更新更多配装推荐。</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">硬核玩家老李</div>
+                    <div class="comment-date">2026-05-18</div>
+                    <div class="comment-text">内容很全面，但希望能补充更多高端技巧和隐藏内容。期待更新！</div>
+                </div>
+        </div>
+    </section>
 </main>
+
+<!-- 底部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
+<!-- 订阅区块 -->
+<section class="subscribe-section">
+    <h2>订阅最新攻略</h2>
+    <p>每周推送最新游戏攻略，不错过任何更新</p>
+    <div class="subscribe-form">
+        <input type="email" placeholder="输入你的邮箱地址" id="subscribeEmail">
+        <button onclick="doSubscribe()">立即订阅</button>
+    </div>
+</section>
+
 <footer class="footer">
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
+
+<script>
+// 搜索功能
+function doSearch() {
+    var q = document.getElementById('searchInput').value.trim();
+    if (q) { window.location.href = 'search.html?q=' + encodeURIComponent(q); }
+}
+
+// 夜间模式切换
+(function() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+        document.documentElement.style.setProperty('--bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--border', '#e0e0e0');
+        document.documentElement.style.setProperty('--text', '#1a1a1a');
+        document.documentElement.style.setProperty('--text-secondary', '#666666');
+        document.documentElement.style.setProperty('--tag-bg', '#f0f0f0');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+})();
+
+function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    if (btn.textContent === '🌙') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--card-bg', '#ffffff');
+        root.style.setProperty('--border', '#e0e0e0');
+        root.style.setProperty('--text', '#1a1a1a');
+        root.style.setProperty('--text-secondary', '#666666');
+        root.style.setProperty('--tag-bg', '#f0f0f0');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        root.style.setProperty('--bg', '#0f0f1a');
+        root.style.setProperty('--card-bg', '#1a1a2e');
+        root.style.setProperty('--border', '#2a2a4a');
+        root.style.setProperty('--text', '#e0e0e0');
+        root.style.setProperty('--text-secondary', '#a0a0b0');
+        root.style.setProperty('--tag-bg', '#252540');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// 评论提交
+function submitComment() {
+    var name = document.getElementById('commentName').value.trim();
+    var text = document.getElementById('commentText').value.trim();
+    if (!name || !text) { alert('请填写昵称和评论内容'); return; }
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var div = document.createElement('div');
+    div.className = 'comment-item';
+    div.innerHTML = '<div class="comment-author">' + name + '</div><div class="comment-date">' + dateStr + '</div><div class="comment-text">' + text + '</div>';
+    document.getElementById('commentList').prepend(div);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentText').value = '';
+}
+
+// 订阅
+function doSubscribe() {
+    var email = document.getElementById('subscribeEmail').value.trim();
+    if (!email) { alert('请输入邮箱地址'); return; }
+    alert('感谢订阅！我们会将最新攻略发送到 ' + email);
+    document.getElementById('subscribeEmail').value = '';
+}
+</script>
 </body>
 </html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APEX英雄攻略专题 - GameGuide游戏攻略站</title>
+    <meta name="description" content="APEX英雄最全攻略：《APEX英雄》是Respawn Entertainment开发、EA发行的免费大逃杀射击游戏。游戏以泰坦陨落宇宙为背景，玩家选择拥有独特技能的「传奇」角色，组...">
     <style>:root {
     --bg: #0f0f1a;
     --card-bg: #1a1a2e;
@@ -13,6 +14,7 @@
     --text: #e0e0e0;
     --text-secondary: #a0a0b0;
     --gold: #f0a500;
+    --tag-bg: #252540;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -27,11 +29,21 @@ body {
     max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
     justify-content: space-between; height: 64px;
 }
-.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
+.search-box { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.search-box input { background: transparent; border: none; color: var(--text); padding: 8px 16px; font-size: 14px; width: 180px; outline: none; }
+.search-box input::placeholder { color: var(--text-secondary); }
+.search-box button { background: var(--accent); border: none; color: white; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+.search-box button:hover { background: var(--accent-hover); }
+.theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text); font-size: 18px;
+    cursor: pointer; padding: 6px 10px; border-radius: 8px; margin-left: 8px; transition: border-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
 .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 .hero {
     border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
@@ -40,6 +52,10 @@ body {
 .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
 .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
 .hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.hero-banner {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;
+    position: relative; z-index: 1; opacity: 0.8;
+}
 .section-title {
     font-size: 20px; font-weight: 700; margin-bottom: 20px;
     display: flex; align-items: center; gap: 12px;
@@ -51,12 +67,75 @@ body {
 }
 .guide-card:hover { border-color: var(--accent); }
 .guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
-.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-.guide-card .placeholder-img {
-    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-    font-size: 14px; flex-direction: column; gap: 8px;
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-line; }
+.guide-card .guide-img {
+    width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-top: 16px;
+    display: block; border: 1px solid var(--border);
 }
+/* 广告位样式 */
+.ad-container {
+    text-align: center; margin: 20px 0; padding: 20px;
+    background: var(--border); border: 2px dashed var(--accent);
+    border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;
+}
+.ad-banner {
+    width: 100%; max-width: 728px; height: 90px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+.ad-skyscraper {
+    width: 300px; height: 600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+/* 评论区 */
+.comment-section {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-top: 32px;
+}
+.comment-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.comment-form input, .comment-form textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-size: 14px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+}
+.comment-form input:focus, .comment-form textarea:focus { border-color: var(--accent); }
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-submit {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    align-self: flex-start; transition: background 0.2s;
+}
+.comment-submit:hover { background: var(--accent-hover); }
+.comment-list { display: flex; flex-direction: column; gap: 16px; }
+.comment-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+}
+.comment-item .comment-author { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.comment-item .comment-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.comment-item .comment-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+/* 订阅区块 */
+.subscribe-section {
+    background: linear-gradient(135deg, var(--card-bg), #2d1b69);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px; text-align: center; margin: 32px 0;
+}
+.subscribe-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.subscribe-section p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.subscribe-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.subscribe-form input {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 16px; font-size: 14px; outline: none;
+    width: 300px; max-width: 100%; transition: border-color 0.2s;
+}
+.subscribe-form input:focus { border-color: var(--accent); }
+.subscribe-form button {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.subscribe-form button:hover { background: var(--accent-hover); }
 .footer {
     text-align: center; padding: 32px; border-top: 1px solid var(--border);
     color: var(--text-secondary); font-size: 13px;
@@ -65,6 +144,11 @@ body {
     .hero { padding: 32px 20px; }
     .hero h1 { font-size: 24px; }
     .nav-links { display: none; }
+    .search-box input { width: 100px; }
+    .ad-banner { max-width: 320px; height: 100px; }
+    .ad-skyscraper { width: 300px; height: 400px; }
+    .subscribe-form { flex-direction: column; align-items: center; }
+    .subscribe-form input { width: 100%; }
 }
 </style>
 </head>
@@ -79,54 +163,230 @@ body {
             <li><a href="index.html">主机游戏</a></li>
             <li><a href="index.html">新游评测</a></li>
         </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索游戏攻略...">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换夜间/日间模式">🌙</button>
     </div>
 </header>
+
+<!-- 头部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
 <main class="main">
-    <section class="hero" style="background: linear-gradient(135deg, #3a1a2a, #1a1a3a);">
-        <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🎯</div>
+    <section class="hero" style="background: linear-gradient(135deg, #3a1a1a, #1a1a3a);">
+        <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🤖</div>
         <h1>APEX英雄攻略专题</h1>
         <div class="subtitle">Apex Legends</div>
-        <p>《APEX英雄》是Respawn Entertainment开发的大逃杀英雄射击游戏。独特的传奇角色系统与快节奏枪战结合，带来爽快的竞技体验。本专题提供新赛季全传奇攻略与排位上分指南。</p>
+        <p>《APEX英雄》是Respawn Entertainment开发、EA发行的免费大逃杀射击游戏。游戏以泰坦陨落宇宙为背景，玩家选择拥有独特技能的「传奇」角色，组成三人小队在竞技场中争夺冠军。</p>
+        <img class="hero-banner" src="https://picsum.photos/1200/400?random=10" alt="APEX英雄游戏Banner" loading="lazy" onerror="this.style.display='none'">
     </section>
+
     <section>
         <h2 class="section-title">攻略内容</h2>
         
             <div class="guide-card">
-                <h3>新赛季传奇推荐</h3>
-                <p>当前版本各定位最强传奇分析：突击位、侦察位、支援位、控制位的最优选择。各传奇的技能组合使用方法与团队配合技巧。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>一、游戏简介</h3>
+                <p>《APEX英雄》于2019年2月4日突然发布，首周玩家突破2500万，成为大逃杀品类的现象级作品。游戏采用三人小队制，每局60名玩家在固定地图上搜集装备、战斗缩圈，最后存活的小队获胜。
+
+游戏的核心特色在于「传奇」系统：每个传奇拥有独特的被动、战术和绝招技能。目前游戏已有25位传奇，分为突击、侦察、支援、控制、散兵五种职业。游戏还引入了复活信标系统，队友阵亡后可以在信标处复活。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=100" alt="APEX英雄 - 一、游戏简介" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>枪械选择与配件搭配</h3>
-                <p>全枪械DPS排行、后坐力分析与最佳配件组合。R-301、Flatline、Wingman等核心枪械的使用技巧与练习方法。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>二、传奇推荐与技能解析</h3>
+                <p>【S级传奇】
+- 探路者（侦察）：钩爪提供极高机动性，滑索绝招让全队快速转移。被动扫描信标减少绝招CD。
+- 恶灵（散兵）：相位移动无敌逃生，传送门绝招提供全队转移。被动提示危险。
+- 地平线（散兵）：重力电梯提供垂直移动，黑洞绝招控制敌人。被动空中移动更灵活。
+
+【A级传奇】
+- 寻血猎犬（侦察）：扫描揭示敌人位置，绝招提升移动速度和视野。
+- 命脉（支援）：治疗无人机+空投补给+复活护盾，最强辅助。
+- 班加罗尔（突击）：烟雾弹掩护+炮击绝招，被动加速。
+
+【新手推荐】
+命脉（简单直接，辅助队友）+寻血猎犬（信息获取，降低被偷袭风险）+班加罗尔（自保能力强）。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=101" alt="APEX英雄 - 二、传奇推荐与技能解析" loading="lazy">
+            </div>
+            <div class="ad-container">
+                <div class="ad-skyscraper">广告位预留 - 300x600</div>
             </div>
             <div class="guide-card">
-                <h3>地图战术与落点分析</h3>
-                <p>当前轮换地图的最佳落点推荐。各POI的资源分布、转移路线规划与决赛圈站位分析。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>三、武器选择与配件搭配</h3>
+                <p>【近战武器】
+- R-99（冲锋枪）：射速极快，近距离爆发最高，需要蓝/紫弹匣。
+- 和平捍卫者（霰弹枪）：蓄力后精准度高，近距离一枪破甲。
+- CAR（冲锋枪）：兼容轻型和重型弹药，换弹快。
+
+【中距离武器】
+- R-301（突击步枪）：后坐力小，精准度高，新手首选。
+- 平行步枪（突击步枪）：伤害高，腰射精准，近中距离通用。
+- G7侦察枪（神射手）：连发精准，中距离压制力强。
+
+【远程武器】
+- 长弓DMR（狙击枪）：弹速快，伤害稳定。
+- 哨兵（狙击枪）：可充能提升伤害，破甲能力强。
+- 波塞克复合弓（神射手）：无声射击，弹药可回收。
+
+【推荐武器组合】
+R-301 + 和平捍卫者（均衡型）/ R-99 + G7（远近兼顾）/ 平行步枪 + CAR（双轻型弹药）。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=102" alt="APEX英雄 - 三、武器选择与配件搭配" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>排位赛上分策略</h3>
-                <p>从青铜到猎杀者的各段位打法差异。RP获取机制详解、团队沟通技巧与逆境翻盘的决策思路。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>四、地图策略与跳伞指南</h3>
+                <p>【跳伞技巧】
+- 距离目标约400-500米时跳伞，保持速度130-145为最佳。
+- 俯冲时视角向下可达到最高速度（约150）。
+- 与队友分散跳伞，避免落地抢装备。
+
+【各地图要点】
+- 诸王峡谷：地图较小，交火频繁。碎片东部/西部是热门跳点，新手建议跳边缘区域。
+- 世界边缘：地图较大，碎片大厦是核心区域。火车和喷泉提供快速移动。
+- 奥林匹斯：地图垂直度高，注意坠崖。庄园和能量仓库是热门跳点。
+- 风暴点：地图最大，有野生猎兽。使用重力大炮快速移动。
+
+【缩圈策略】
+- 第二圈开始向安全区中心移动，占据有利位置。
+- 利用侦察传奇的信标提前获取下一圈位置。
+- 决赛圈优先占据高地和掩体，不要主动暴露位置。</p>
+                
+            </div>
+            <div class="guide-card">
+                <h3>五、常见问题FAQ</h3>
+                <p>Q：新手应该玩什么传奇？
+A：命脉（辅助队友，降低存在感）、寻血猎犬（获取信息，减少被偷袭）、班加罗尔（自保能力强）。
+
+Q：如何提升枪法？
+A：在射击场练习压枪，熟悉每把武器的后坐力模式。实战中多打落地架积累经验。
+
+Q：排位怎么上分？
+A：优先保排名分（前10名开始加分），不要盲目打架。选择侦察传奇提前获取缩圈信息，占据有利位置。
+
+Q：什么是进化护盾？
+A：通过造成伤害升级护盾等级（白→蓝→紫→红）。红甲有125点护盾，是最强护盾。</p>
+                
             </div>
     </section>
+
+    <!-- 评论区 -->
+    <section class="comment-section">
+        <h2>发表评论</h2>
+        <div class="comment-form">
+            <input type="text" placeholder="你的昵称" id="commentName">
+            <input type="email" placeholder="邮箱（选填）" id="commentEmail">
+            <textarea placeholder="写下你的评论..." id="commentText"></textarea>
+            <button class="comment-submit" onclick="submitComment()">发表评论</button>
+        </div>
+        <div class="comment-list" id="commentList">
+            
+                <div class="comment-item">
+                    <div class="comment-author">游戏达人小王</div>
+                    <div class="comment-date">2026-05-22</div>
+                    <div class="comment-text">这篇攻略太详细了！照着打终于过了卡了很久的BOSS，感谢作者！</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">新手玩家阿明</div>
+                    <div class="comment-date">2026-05-20</div>
+                    <div class="comment-text">作为刚入坑的新手，这篇攻略对我帮助很大。希望能更新更多配装推荐。</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">硬核玩家老李</div>
+                    <div class="comment-date">2026-05-18</div>
+                    <div class="comment-text">内容很全面，但希望能补充更多高端技巧和隐藏内容。期待更新！</div>
+                </div>
+        </div>
+    </section>
 </main>
+
+<!-- 底部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
+<!-- 订阅区块 -->
+<section class="subscribe-section">
+    <h2>订阅最新攻略</h2>
+    <p>每周推送最新游戏攻略，不错过任何更新</p>
+    <div class="subscribe-form">
+        <input type="email" placeholder="输入你的邮箱地址" id="subscribeEmail">
+        <button onclick="doSubscribe()">立即订阅</button>
+    </div>
+</section>
+
 <footer class="footer">
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
+
+<script>
+// 搜索功能
+function doSearch() {
+    var q = document.getElementById('searchInput').value.trim();
+    if (q) { window.location.href = 'search.html?q=' + encodeURIComponent(q); }
+}
+
+// 夜间模式切换
+(function() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+        document.documentElement.style.setProperty('--bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--border', '#e0e0e0');
+        document.documentElement.style.setProperty('--text', '#1a1a1a');
+        document.documentElement.style.setProperty('--text-secondary', '#666666');
+        document.documentElement.style.setProperty('--tag-bg', '#f0f0f0');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+})();
+
+function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    if (btn.textContent === '🌙') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--card-bg', '#ffffff');
+        root.style.setProperty('--border', '#e0e0e0');
+        root.style.setProperty('--text', '#1a1a1a');
+        root.style.setProperty('--text-secondary', '#666666');
+        root.style.setProperty('--tag-bg', '#f0f0f0');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        root.style.setProperty('--bg', '#0f0f1a');
+        root.style.setProperty('--card-bg', '#1a1a2e');
+        root.style.setProperty('--border', '#2a2a4a');
+        root.style.setProperty('--text', '#e0e0e0');
+        root.style.setProperty('--text-secondary', '#a0a0b0');
+        root.style.setProperty('--tag-bg', '#252540');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// 评论提交
+function submitComment() {
+    var name = document.getElementById('commentName').value.trim();
+    var text = document.getElementById('commentText').value.trim();
+    if (!name || !text) { alert('请填写昵称和评论内容'); return; }
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var div = document.createElement('div');
+    div.className = 'comment-item';
+    div.innerHTML = '<div class="comment-author">' + name + '</div><div class="comment-date">' + dateStr + '</div><div class="comment-text">' + text + '</div>';
+    document.getElementById('commentList').prepend(div);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentText').value = '';
+}
+
+// 订阅
+function doSubscribe() {
+    var email = document.getElementById('subscribeEmail').value.trim();
+    if (!email) { alert('请输入邮箱地址'); return; }
+    alert('感谢订阅！我们会将最新攻略发送到 ' + email);
+    document.getElementById('subscribeEmail').value = '';
+}
+</script>
 </body>
 </html>

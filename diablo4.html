@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>暗黑破坏神4攻略专题 - GameGuide游戏攻略站</title>
+    <meta name="description" content="暗黑破坏神4最全攻略：《暗黑破坏神4》是暴雪娱乐开发的暗黑系列最新作，回归了系列黑暗、血腥的美学风格。玩家将在庇护之地中对抗莉莉丝的邪恶势力，探索广阔的开放世界。...">
     <style>:root {
     --bg: #0f0f1a;
     --card-bg: #1a1a2e;
@@ -13,6 +14,7 @@
     --text: #e0e0e0;
     --text-secondary: #a0a0b0;
     --gold: #f0a500;
+    --tag-bg: #252540;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -27,11 +29,21 @@ body {
     max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
     justify-content: space-between; height: 64px;
 }
-.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
+.search-box { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.search-box input { background: transparent; border: none; color: var(--text); padding: 8px 16px; font-size: 14px; width: 180px; outline: none; }
+.search-box input::placeholder { color: var(--text-secondary); }
+.search-box button { background: var(--accent); border: none; color: white; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+.search-box button:hover { background: var(--accent-hover); }
+.theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text); font-size: 18px;
+    cursor: pointer; padding: 6px 10px; border-radius: 8px; margin-left: 8px; transition: border-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
 .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 .hero {
     border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
@@ -40,6 +52,10 @@ body {
 .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
 .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
 .hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.hero-banner {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;
+    position: relative; z-index: 1; opacity: 0.8;
+}
 .section-title {
     font-size: 20px; font-weight: 700; margin-bottom: 20px;
     display: flex; align-items: center; gap: 12px;
@@ -51,12 +67,75 @@ body {
 }
 .guide-card:hover { border-color: var(--accent); }
 .guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
-.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-.guide-card .placeholder-img {
-    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-    font-size: 14px; flex-direction: column; gap: 8px;
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-line; }
+.guide-card .guide-img {
+    width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-top: 16px;
+    display: block; border: 1px solid var(--border);
 }
+/* 广告位样式 */
+.ad-container {
+    text-align: center; margin: 20px 0; padding: 20px;
+    background: var(--border); border: 2px dashed var(--accent);
+    border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;
+}
+.ad-banner {
+    width: 100%; max-width: 728px; height: 90px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+.ad-skyscraper {
+    width: 300px; height: 600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+/* 评论区 */
+.comment-section {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-top: 32px;
+}
+.comment-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.comment-form input, .comment-form textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-size: 14px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+}
+.comment-form input:focus, .comment-form textarea:focus { border-color: var(--accent); }
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-submit {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    align-self: flex-start; transition: background 0.2s;
+}
+.comment-submit:hover { background: var(--accent-hover); }
+.comment-list { display: flex; flex-direction: column; gap: 16px; }
+.comment-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+}
+.comment-item .comment-author { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.comment-item .comment-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.comment-item .comment-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+/* 订阅区块 */
+.subscribe-section {
+    background: linear-gradient(135deg, var(--card-bg), #2d1b69);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px; text-align: center; margin: 32px 0;
+}
+.subscribe-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.subscribe-section p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.subscribe-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.subscribe-form input {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 16px; font-size: 14px; outline: none;
+    width: 300px; max-width: 100%; transition: border-color 0.2s;
+}
+.subscribe-form input:focus { border-color: var(--accent); }
+.subscribe-form button {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.subscribe-form button:hover { background: var(--accent-hover); }
 .footer {
     text-align: center; padding: 32px; border-top: 1px solid var(--border);
     color: var(--text-secondary); font-size: 13px;
@@ -65,6 +144,11 @@ body {
     .hero { padding: 32px 20px; }
     .hero h1 { font-size: 24px; }
     .nav-links { display: none; }
+    .search-box input { width: 100px; }
+    .ad-banner { max-width: 320px; height: 100px; }
+    .ad-skyscraper { width: 300px; height: 400px; }
+    .subscribe-form { flex-direction: column; align-items: center; }
+    .subscribe-form input { width: 100%; }
 }
 </style>
 </head>
@@ -79,54 +163,230 @@ body {
             <li><a href="index.html">主机游戏</a></li>
             <li><a href="index.html">新游评测</a></li>
         </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索游戏攻略...">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换夜间/日间模式">🌙</button>
     </div>
 </header>
+
+<!-- 头部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
 <main class="main">
     <section class="hero" style="background: linear-gradient(135deg, #2a1a1a, #1a1a1a);">
         <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">💀</div>
         <h1>暗黑破坏神4攻略专题</h1>
         <div class="subtitle">Diablo IV</div>
-        <p>《暗黑破坏神4》是暴雪娱乐开发的暗黑系列最新续作。开放世界的庇护之地充满危险与机遇。本专题提供赛季开荒攻略、各职业Build与终局内容指南。</p>
+        <p>《暗黑破坏神4》是暴雪娱乐开发的暗黑系列最新作，回归了系列黑暗、血腥的美学风格。玩家将在庇护之地中对抗莉莉丝的邪恶势力，探索广阔的开放世界。</p>
+        <img class="hero-banner" src="https://picsum.photos/1200/400?random=11" alt="暗黑破坏神4游戏Banner" loading="lazy" onerror="this.style.display='none'">
     </section>
+
     <section>
         <h2 class="section-title">攻略内容</h2>
         
             <div class="guide-card">
-                <h3>赛季开荒速通指南</h3>
-                <p>新赛季从1级到满级的最优升级路线。声望系统解锁优先级、赛季旅程任务高效完成顺序与威能地城刷取策略。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>一、游戏简介</h3>
+                <p>《暗黑破坏神4》于2023年6月6日正式发售，登陆PC、PS5、PS4、Xbox Series X|S和Xbox One平台。游戏采用开放世界设计，包含五个区域：破碎群峰、斯科斯格伦、干燥草原、凯吉斯坦和哈维泽。
+
+游戏共有五个职业：野蛮人（近战物理）、法师（元素魔法）、德鲁伊（自然之力+变形）、游侠（远程+陷阱）、死灵法师（召唤亡灵）。每个职业有独特的技能树和职业机制，支持多种流派Build。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=110" alt="暗黑破坏神4 - 一、游戏简介" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>五大职业Build推荐</h3>
-                <p>野蛮人、德鲁伊、死灵法师、游侠、魔法师——每个职业的S级终局Build。装备词条优先级、威能搭配与巅峰盘点法详解。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>二、赛季开荒速通指南</h3>
+                <p>【开荒准备】
+1. 完成主线剧情后，优先收集莉莉丝祭坛（全属性+68力量/智力/敏捷/意志，+4巅峰点数）。
+2. 解锁全部传送点，方便快速移动。
+3. 完成声望任务，获取技能点和巅峰点数奖励。
+
+【升级路线（1-50级）】
+- 1-15级：完成赛季任务线，获取赛季专属威能。
+- 15-30级：刷多姆海涅地道（经验效率最高）。
+- 30-45级：完成低语之树任务+地狱狂潮。
+- 45-50级：通关圣光大教堂，解锁世界3难度。
+
+【升级路线（50-100级）】
+- 50-60级：刷噩梦地下城（等级30-40）。
+- 60-80级：刷地狱狂潮+世界BOSS+噩梦地下城（等级50-70）。
+- 80-100级：刷高层噩梦地下城（等级80-100），挑战终极BOSS。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=111" alt="暗黑破坏神4 - 二、赛季开荒速通指南" loading="lazy">
+            </div>
+            <div class="ad-container">
+                <div class="ad-skyscraper">广告位预留 - 300x600</div>
             </div>
             <div class="guide-card">
-                <h3>终局内容攻略</h3>
-                <p>噩梦地城冲层策略、世界BOSS讨伐时间表与打法、地狱狂潮高效刷取路线。都瑞尔等终局BOSS的挑战准备与掉落物一览。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>三、各职业强力Build</h3>
+                <p>【野蛮人 - 旋风斩】
+核心技能：旋风斩+战吼+挑战怒吼。威能：旋风斩吸引敌人+狂暴延长。装备：哈洛加斯之怒（胸甲）+拉玛兰迪的杰作（剑）。
+
+【法师 - 冰霜球】
+核心技能：冰霜球+冰霜新星+暴风雪。威能：冰霜球爆炸两次+冰霜新星额外充能。装备：无限法衣（胸甲）+冰心长裤。
+
+【德鲁伊 - 风暴狼】
+核心技能：龙卷风+飓风+石化。威能：龙卷风追踪敌人+风暴技能增伤。装备：风暴之友（头）+疯狂狼人（胸甲）。
+
+【游侠 - 穿透射击】
+核心技能：穿透射击+暗影步+毒陷阱。威能：穿透射击分裂+连击点增伤。装备：定罪（匕首）+哈坎之语（护符）。
+
+【死灵法师 - 骨矛】
+核心技能：骨矛+尸体爆炸+白骨风暴。威能：骨矛分裂+白骨风暴延长。装备：黑河（镰刀）+无眠之墙（盾牌）。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=112" alt="暗黑破坏神4 - 三、各职业强力Build" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>装备系统深度解析</h3>
-                <p>暗金装备、传奇装备的词条ROLL范围与洗练策略。各职业最稀有的暗金装备获取途径与毕业标准。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>四、装备系统与威能</h3>
+                <p>【装备品质】
+- 普通（白）→魔法（蓝）→稀有（黄）→传奇（橙）→暗金（金）→神话暗金（紫）
+- 传奇装备可以萃取威能，也可以刻印威能。
+- 暗金装备有固定词条和独特效果，不可刻印威能。
+
+【威能系统】
+- 威能分为攻击、防御、资源、通用、移动五种类型。
+- 地下城解锁的威能（低保威能）数值最低，但可以无限使用。
+- 萃取获得的威能数值随机，高Roll值威能非常珍贵。
+
+【装备强化】
+- 铁匠：升级装备（1-5级），提升基础属性。
+- 珠宝匠：镶嵌宝石，提供额外属性。
+- 秘术师：附魔（重Roll一条词缀）、刻印威能。
+- 玄术师：淬炼（回火）装备，添加额外词缀。</p>
+                
+            </div>
+            <div class="guide-card">
+                <h3>五、常见问题FAQ</h3>
+                <p>Q：赛季角色和永恒角色有什么区别？
+A：赛季角色每个赛季重新开始，赛季结束后转为永恒角色。赛季有专属内容和奖励，推荐玩赛季。
+
+Q：如何快速获取金币？
+A：刷地狱狂潮收集余烬，开神秘宝箱（250余烬/个），宝箱掉落大量装备，卖店换金币。
+
+Q：什么是地狱狂潮？
+A：每小时刷新一次的区域事件，持续55分钟。区域内怪物掉落余烬，可在宝箱处兑换装备和材料。
+
+Q：世界BOSS什么时候刷新？
+A：每3-4小时刷新一次，具体时间可在游戏内地图查看。世界BOSS掉落高级装备和材料。</p>
+                
             </div>
     </section>
+
+    <!-- 评论区 -->
+    <section class="comment-section">
+        <h2>发表评论</h2>
+        <div class="comment-form">
+            <input type="text" placeholder="你的昵称" id="commentName">
+            <input type="email" placeholder="邮箱（选填）" id="commentEmail">
+            <textarea placeholder="写下你的评论..." id="commentText"></textarea>
+            <button class="comment-submit" onclick="submitComment()">发表评论</button>
+        </div>
+        <div class="comment-list" id="commentList">
+            
+                <div class="comment-item">
+                    <div class="comment-author">游戏达人小王</div>
+                    <div class="comment-date">2026-05-22</div>
+                    <div class="comment-text">这篇攻略太详细了！照着打终于过了卡了很久的BOSS，感谢作者！</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">新手玩家阿明</div>
+                    <div class="comment-date">2026-05-20</div>
+                    <div class="comment-text">作为刚入坑的新手，这篇攻略对我帮助很大。希望能更新更多配装推荐。</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">硬核玩家老李</div>
+                    <div class="comment-date">2026-05-18</div>
+                    <div class="comment-text">内容很全面，但希望能补充更多高端技巧和隐藏内容。期待更新！</div>
+                </div>
+        </div>
+    </section>
 </main>
+
+<!-- 底部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
+<!-- 订阅区块 -->
+<section class="subscribe-section">
+    <h2>订阅最新攻略</h2>
+    <p>每周推送最新游戏攻略，不错过任何更新</p>
+    <div class="subscribe-form">
+        <input type="email" placeholder="输入你的邮箱地址" id="subscribeEmail">
+        <button onclick="doSubscribe()">立即订阅</button>
+    </div>
+</section>
+
 <footer class="footer">
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
+
+<script>
+// 搜索功能
+function doSearch() {
+    var q = document.getElementById('searchInput').value.trim();
+    if (q) { window.location.href = 'search.html?q=' + encodeURIComponent(q); }
+}
+
+// 夜间模式切换
+(function() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+        document.documentElement.style.setProperty('--bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--border', '#e0e0e0');
+        document.documentElement.style.setProperty('--text', '#1a1a1a');
+        document.documentElement.style.setProperty('--text-secondary', '#666666');
+        document.documentElement.style.setProperty('--tag-bg', '#f0f0f0');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+})();
+
+function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    if (btn.textContent === '🌙') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--card-bg', '#ffffff');
+        root.style.setProperty('--border', '#e0e0e0');
+        root.style.setProperty('--text', '#1a1a1a');
+        root.style.setProperty('--text-secondary', '#666666');
+        root.style.setProperty('--tag-bg', '#f0f0f0');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        root.style.setProperty('--bg', '#0f0f1a');
+        root.style.setProperty('--card-bg', '#1a1a2e');
+        root.style.setProperty('--border', '#2a2a4a');
+        root.style.setProperty('--text', '#e0e0e0');
+        root.style.setProperty('--text-secondary', '#a0a0b0');
+        root.style.setProperty('--tag-bg', '#252540');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// 评论提交
+function submitComment() {
+    var name = document.getElementById('commentName').value.trim();
+    var text = document.getElementById('commentText').value.trim();
+    if (!name || !text) { alert('请填写昵称和评论内容'); return; }
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var div = document.createElement('div');
+    div.className = 'comment-item';
+    div.innerHTML = '<div class="comment-author">' + name + '</div><div class="comment-date">' + dateStr + '</div><div class="comment-text">' + text + '</div>';
+    document.getElementById('commentList').prepend(div);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentText').value = '';
+}
+
+// 订阅
+function doSubscribe() {
+    var email = document.getElementById('subscribeEmail').value.trim();
+    if (!email) { alert('请输入邮箱地址'); return; }
+    alert('感谢订阅！我们会将最新攻略发送到 ' + email);
+    document.getElementById('subscribeEmail').value = '';
+}
+</script>
 </body>
 </html>

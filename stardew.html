@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>星露谷物语攻略专题 - GameGuide游戏攻略站</title>
+    <meta name="description" content="星露谷物语最全攻略：《星露谷物语》是ConcernedApe独立开发的农场模拟角色扮演游戏。玩家继承祖父的旧农场，在星露谷中种田、采矿、钓鱼、交友，体验宁静而充实的乡村生活。...">
     <style>:root {
     --bg: #0f0f1a;
     --card-bg: #1a1a2e;
@@ -13,6 +14,7 @@
     --text: #e0e0e0;
     --text-secondary: #a0a0b0;
     --gold: #f0a500;
+    --tag-bg: #252540;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -27,11 +29,21 @@ body {
     max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
     justify-content: space-between; height: 64px;
 }
-.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
+.search-box { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.search-box input { background: transparent; border: none; color: var(--text); padding: 8px 16px; font-size: 14px; width: 180px; outline: none; }
+.search-box input::placeholder { color: var(--text-secondary); }
+.search-box button { background: var(--accent); border: none; color: white; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+.search-box button:hover { background: var(--accent-hover); }
+.theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text); font-size: 18px;
+    cursor: pointer; padding: 6px 10px; border-radius: 8px; margin-left: 8px; transition: border-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
 .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 .hero {
     border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
@@ -40,6 +52,10 @@ body {
 .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
 .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
 .hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.hero-banner {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;
+    position: relative; z-index: 1; opacity: 0.8;
+}
 .section-title {
     font-size: 20px; font-weight: 700; margin-bottom: 20px;
     display: flex; align-items: center; gap: 12px;
@@ -51,12 +67,75 @@ body {
 }
 .guide-card:hover { border-color: var(--accent); }
 .guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
-.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-.guide-card .placeholder-img {
-    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-    font-size: 14px; flex-direction: column; gap: 8px;
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-line; }
+.guide-card .guide-img {
+    width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-top: 16px;
+    display: block; border: 1px solid var(--border);
 }
+/* 广告位样式 */
+.ad-container {
+    text-align: center; margin: 20px 0; padding: 20px;
+    background: var(--border); border: 2px dashed var(--accent);
+    border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;
+}
+.ad-banner {
+    width: 100%; max-width: 728px; height: 90px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+.ad-skyscraper {
+    width: 300px; height: 600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+/* 评论区 */
+.comment-section {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-top: 32px;
+}
+.comment-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.comment-form input, .comment-form textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-size: 14px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+}
+.comment-form input:focus, .comment-form textarea:focus { border-color: var(--accent); }
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-submit {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    align-self: flex-start; transition: background 0.2s;
+}
+.comment-submit:hover { background: var(--accent-hover); }
+.comment-list { display: flex; flex-direction: column; gap: 16px; }
+.comment-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+}
+.comment-item .comment-author { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.comment-item .comment-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.comment-item .comment-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+/* 订阅区块 */
+.subscribe-section {
+    background: linear-gradient(135deg, var(--card-bg), #2d1b69);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px; text-align: center; margin: 32px 0;
+}
+.subscribe-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.subscribe-section p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.subscribe-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.subscribe-form input {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 16px; font-size: 14px; outline: none;
+    width: 300px; max-width: 100%; transition: border-color 0.2s;
+}
+.subscribe-form input:focus { border-color: var(--accent); }
+.subscribe-form button {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.subscribe-form button:hover { background: var(--accent-hover); }
 .footer {
     text-align: center; padding: 32px; border-top: 1px solid var(--border);
     color: var(--text-secondary); font-size: 13px;
@@ -65,6 +144,11 @@ body {
     .hero { padding: 32px 20px; }
     .hero h1 { font-size: 24px; }
     .nav-links { display: none; }
+    .search-box input { width: 100px; }
+    .ad-banner { max-width: 320px; height: 100px; }
+    .ad-skyscraper { width: 300px; height: 400px; }
+    .subscribe-form { flex-direction: column; align-items: center; }
+    .subscribe-form input { width: 100%; }
 }
 </style>
 </head>
@@ -79,54 +163,240 @@ body {
             <li><a href="index.html">主机游戏</a></li>
             <li><a href="index.html">新游评测</a></li>
         </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索游戏攻略...">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换夜间/日间模式">🌙</button>
     </div>
 </header>
+
+<!-- 头部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
 <main class="main">
     <section class="hero" style="background: linear-gradient(135deg, #2a3a1a, #1a2a1a);">
         <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🌾</div>
         <h1>星露谷物语攻略专题</h1>
         <div class="subtitle">Stardew Valley</div>
-        <p>《星露谷物语》是由ConcernedApe独立开发的农场模拟RPG。玩家继承祖父的农场，在鹈鹕镇开始新的生活。本专题提供1.7版本更新后的完整攻略。</p>
+        <p>《星露谷物语》是ConcernedApe独立开发的农场模拟角色扮演游戏。玩家继承祖父的旧农场，在星露谷中种田、采矿、钓鱼、交友，体验宁静而充实的乡村生活。</p>
+        <img class="hero-banner" src="https://picsum.photos/1200/400?random=8" alt="星露谷物语游戏Banner" loading="lazy" onerror="this.style.display='none'">
     </section>
+
     <section>
         <h2 class="section-title">攻略内容</h2>
         
             <div class="guide-card">
-                <h3>1.7版本新内容详解</h3>
-                <p>新地图区域、新NPC、新农作物与新节日活动的完整介绍。新道具获取方式与新成就解锁条件。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>一、游戏简介</h3>
+                <p>《星露谷物语》于2016年2月26日在Steam发售，由Eric Barone（ConcernedApe）一人历时4年独立开发完成。游戏灵感来自《牧场物语》系列，但加入了更多RPG元素和自由度。
+
+玩家从零开始经营一座荒废的农场，可以种植作物、饲养动物、采矿探险、钓鱼烹饪、与村民交友甚至结婚生子。游戏没有强制目标，玩家可以按照自己的节奏享受田园生活。游戏支持最多4人联机合作。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=80" alt="星露谷物语 - 一、游戏简介" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>第一年完美开局</h3>
-                <p>春季到冬季的作物种植规划、献祭包完成路线、技能升级优先级与金币最大化策略。社区中心vs Joja路线的选择分析。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>二、第一年四季攻略</h3>
+                <p>【春季（Year 1）】
+- 第1天：清理农场，种下刘易斯给的15个防风草种子。
+- 第2-4天：钓鱼赚钱，攒钱买草莓种子（复活节购买，$100/个）。
+- 第5天：下矿洞，收集铜矿升级工具。
+- 第13天（复活节）：尽可能多买草莓种子，草莓是春季最赚钱的作物。
+- 目标：春季结束前升级铜镐、铜斧，建造鸡舍。
+
+【夏季（Year 1）】
+- 种植蓝莓（夏季最赚钱作物，可多次收获）。
+- 升级到铁镐，下矿到80层收集金矿。
+- 建造马厩（需要硬木，在秘密森林获取）。
+- 修复海滩的断桥（300木材），解锁潮汐池。
+
+【秋季（Year 1）】
+- 种植蔓越莓（秋季最赚钱作物，可多次收获）。
+- 完成社区中心的金库房间（共需$42,500）。
+- 升级到金镐，下矿到120层获得骷髅钥匙。
+- 开始养牛和鸡，制作蛋黄酱机和奶酪机。
+
+【冬季（Year 1）】
+- 升级所有工具到金级。
+- 下沙漠矿洞收集铱矿。
+- 与村民提升好感度。
+- 规划第二年农场布局。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=81" alt="星露谷物语 - 二、第一年四季攻略" loading="lazy">
+            </div>
+            <div class="ad-container">
+                <div class="ad-skyscraper">广告位预留 - 300x600</div>
             </div>
             <div class="guide-card">
-                <h3>全NPC好感度攻略</h3>
-                <p>每位村民最爱的礼物列表、生日送礼加成机制、心事件触发条件与结婚攻略。全角色日程表与交友好感度速成方法。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>三、赚钱攻略</h3>
+                <p>【前期赚钱（春-夏）】
+1. 钓鱼：前期最稳定的收入来源，鲶鱼（春季雨天）、鲟鱼（夏季）价格高。
+2. 采集：每个季节的采集物可以做成种子（种子价格是采集物的2-3倍）。
+3. 草莓/蓝莓：多次收获作物，投入产出比最高。
+
+【中期赚钱（秋-冬）】
+1. 酿酒：远古水果→果酒（$2,310/瓶，40天陈酿后$4,620）。
+2. 松露油：养猪→松露→松露油（$1,491/瓶）。
+3. 蛋黄酱/奶酪：动物产品加工后价格翻倍。
+
+【后期赚钱（第二年+）】
+1. 远古水果温室：全年种植远古水果，配合小桶酿酒。
+2. 宝石复制机：复制钻石（$750/个，5天产出）。
+3. 姜岛农场：第二块农场，种植杨桃酿酒。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=82" alt="星露谷物语 - 三、赚钱攻略" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>矿洞与战斗指南</h3>
-                <p>普通矿洞与骷髅洞穴的探索策略。最强武器获取、戒指搭配、食物Buff选择与铱矿高效刷取方法。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>四、村民好感度与结婚指南</h3>
+                <p>【送礼技巧】
+- 每个村民每周最多送2次礼物，生日送礼好感度×8。
+- 最爱礼物：每个村民有独特的喜好，送最爱礼物+80好感度。
+- 万能礼物：兔子的脚（除潘妮外所有人都喜欢）、五彩碎片（除海莉外）。
+
+【推荐结婚对象】
+- 阿比盖尔：喜欢紫水晶、南瓜、巧克力蛋糕。性格活泼，喜欢冒险。
+- 塞巴斯蒂安：喜欢虚空蛋、生鱼片、黑曜石。性格内向，喜欢编程和桌游。
+- 莉亚：喜欢沙拉、松露、葡萄酒。性格温柔，是艺术家。
+- 艾利欧特：喜欢石榴、鸭毛、龙虾。性格浪漫，是作家。
+
+【结婚条件】
+1. 好感度达到10心。
+2. 雨天到海滩找老水手购买美人鱼吊坠（$5,000）。
+3. 升级农舍至少一次（有厨房）。
+4. 婚礼在3天后举行。</p>
+                
+            </div>
+            <div class="guide-card">
+                <h3>五、常见问题FAQ</h3>
+                <p>Q：社区中心和Joja会员选哪个？
+A：新手推荐社区中心路线，完成收集包的过程可以引导你体验游戏全部内容。Joja路线适合速通玩家，只需花钱即可。
+
+Q：如何获得铱矿？
+A：沙漠矿洞（骷髅洞穴）是铱矿主要来源。带足炸弹、楼梯和食物，越深铱矿越多。爷爷的评价4根蜡烛也会奖励铱猫雕像（每天产2-8个铱矿）。
+
+Q：远古种子怎么获得？
+A：在矿洞杀虫子有0.5%概率掉落，或把远古水果放入种子制造机。获得第一颗后种在温室里，用种子制造机不断复制。
+
+Q：游戏有结局吗？
+A：第三年春季第一天爷爷会回来评价你的成就（4根蜡烛为最高评价）。但游戏可以无限玩下去，没有强制结局。</p>
+                
             </div>
     </section>
+
+    <!-- 评论区 -->
+    <section class="comment-section">
+        <h2>发表评论</h2>
+        <div class="comment-form">
+            <input type="text" placeholder="你的昵称" id="commentName">
+            <input type="email" placeholder="邮箱（选填）" id="commentEmail">
+            <textarea placeholder="写下你的评论..." id="commentText"></textarea>
+            <button class="comment-submit" onclick="submitComment()">发表评论</button>
+        </div>
+        <div class="comment-list" id="commentList">
+            
+                <div class="comment-item">
+                    <div class="comment-author">游戏达人小王</div>
+                    <div class="comment-date">2026-05-22</div>
+                    <div class="comment-text">这篇攻略太详细了！照着打终于过了卡了很久的BOSS，感谢作者！</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">新手玩家阿明</div>
+                    <div class="comment-date">2026-05-20</div>
+                    <div class="comment-text">作为刚入坑的新手，这篇攻略对我帮助很大。希望能更新更多配装推荐。</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">硬核玩家老李</div>
+                    <div class="comment-date">2026-05-18</div>
+                    <div class="comment-text">内容很全面，但希望能补充更多高端技巧和隐藏内容。期待更新！</div>
+                </div>
+        </div>
+    </section>
 </main>
+
+<!-- 底部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
+<!-- 订阅区块 -->
+<section class="subscribe-section">
+    <h2>订阅最新攻略</h2>
+    <p>每周推送最新游戏攻略，不错过任何更新</p>
+    <div class="subscribe-form">
+        <input type="email" placeholder="输入你的邮箱地址" id="subscribeEmail">
+        <button onclick="doSubscribe()">立即订阅</button>
+    </div>
+</section>
+
 <footer class="footer">
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
+
+<script>
+// 搜索功能
+function doSearch() {
+    var q = document.getElementById('searchInput').value.trim();
+    if (q) { window.location.href = 'search.html?q=' + encodeURIComponent(q); }
+}
+
+// 夜间模式切换
+(function() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+        document.documentElement.style.setProperty('--bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--border', '#e0e0e0');
+        document.documentElement.style.setProperty('--text', '#1a1a1a');
+        document.documentElement.style.setProperty('--text-secondary', '#666666');
+        document.documentElement.style.setProperty('--tag-bg', '#f0f0f0');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+})();
+
+function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    if (btn.textContent === '🌙') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--card-bg', '#ffffff');
+        root.style.setProperty('--border', '#e0e0e0');
+        root.style.setProperty('--text', '#1a1a1a');
+        root.style.setProperty('--text-secondary', '#666666');
+        root.style.setProperty('--tag-bg', '#f0f0f0');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        root.style.setProperty('--bg', '#0f0f1a');
+        root.style.setProperty('--card-bg', '#1a1a2e');
+        root.style.setProperty('--border', '#2a2a4a');
+        root.style.setProperty('--text', '#e0e0e0');
+        root.style.setProperty('--text-secondary', '#a0a0b0');
+        root.style.setProperty('--tag-bg', '#252540');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// 评论提交
+function submitComment() {
+    var name = document.getElementById('commentName').value.trim();
+    var text = document.getElementById('commentText').value.trim();
+    if (!name || !text) { alert('请填写昵称和评论内容'); return; }
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var div = document.createElement('div');
+    div.className = 'comment-item';
+    div.innerHTML = '<div class="comment-author">' + name + '</div><div class="comment-date">' + dateStr + '</div><div class="comment-text">' + text + '</div>';
+    document.getElementById('commentList').prepend(div);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentText').value = '';
+}
+
+// 订阅
+function doSubscribe() {
+    var email = document.getElementById('subscribeEmail').value.trim();
+    if (!email) { alert('请输入邮箱地址'); return; }
+    alert('感谢订阅！我们会将最新攻略发送到 ' + email);
+    document.getElementById('subscribeEmail').value = '';
+}
+</script>
 </body>
 </html>

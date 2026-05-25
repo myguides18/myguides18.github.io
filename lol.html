@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>英雄联盟攻略专题 - GameGuide游戏攻略站</title>
+    <meta name="description" content="英雄联盟最全攻略：《英雄联盟》是Riot Games开发的MOBA竞技网游，全球最受欢迎的PC游戏之一。玩家选择英雄组成5人队伍，在召唤师峡谷中与对手展开策略与操作的较量。...">
     <style>:root {
     --bg: #0f0f1a;
     --card-bg: #1a1a2e;
@@ -13,6 +14,7 @@
     --text: #e0e0e0;
     --text-secondary: #a0a0b0;
     --gold: #f0a500;
+    --tag-bg: #252540;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -27,11 +29,21 @@ body {
     max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
     justify-content: space-between; height: 64px;
 }
-.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
+.search-box { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.search-box input { background: transparent; border: none; color: var(--text); padding: 8px 16px; font-size: 14px; width: 180px; outline: none; }
+.search-box input::placeholder { color: var(--text-secondary); }
+.search-box button { background: var(--accent); border: none; color: white; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+.search-box button:hover { background: var(--accent-hover); }
+.theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text); font-size: 18px;
+    cursor: pointer; padding: 6px 10px; border-radius: 8px; margin-left: 8px; transition: border-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
 .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 .hero {
     border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
@@ -40,6 +52,10 @@ body {
 .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
 .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
 .hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.hero-banner {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;
+    position: relative; z-index: 1; opacity: 0.8;
+}
 .section-title {
     font-size: 20px; font-weight: 700; margin-bottom: 20px;
     display: flex; align-items: center; gap: 12px;
@@ -51,12 +67,75 @@ body {
 }
 .guide-card:hover { border-color: var(--accent); }
 .guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
-.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-.guide-card .placeholder-img {
-    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-    font-size: 14px; flex-direction: column; gap: 8px;
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-line; }
+.guide-card .guide-img {
+    width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-top: 16px;
+    display: block; border: 1px solid var(--border);
 }
+/* 广告位样式 */
+.ad-container {
+    text-align: center; margin: 20px 0; padding: 20px;
+    background: var(--border); border: 2px dashed var(--accent);
+    border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;
+}
+.ad-banner {
+    width: 100%; max-width: 728px; height: 90px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+.ad-skyscraper {
+    width: 300px; height: 600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+/* 评论区 */
+.comment-section {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-top: 32px;
+}
+.comment-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.comment-form input, .comment-form textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-size: 14px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+}
+.comment-form input:focus, .comment-form textarea:focus { border-color: var(--accent); }
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-submit {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    align-self: flex-start; transition: background 0.2s;
+}
+.comment-submit:hover { background: var(--accent-hover); }
+.comment-list { display: flex; flex-direction: column; gap: 16px; }
+.comment-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+}
+.comment-item .comment-author { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.comment-item .comment-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.comment-item .comment-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+/* 订阅区块 */
+.subscribe-section {
+    background: linear-gradient(135deg, var(--card-bg), #2d1b69);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px; text-align: center; margin: 32px 0;
+}
+.subscribe-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.subscribe-section p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.subscribe-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.subscribe-form input {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 16px; font-size: 14px; outline: none;
+    width: 300px; max-width: 100%; transition: border-color 0.2s;
+}
+.subscribe-form input:focus { border-color: var(--accent); }
+.subscribe-form button {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.subscribe-form button:hover { background: var(--accent-hover); }
 .footer {
     text-align: center; padding: 32px; border-top: 1px solid var(--border);
     color: var(--text-secondary); font-size: 13px;
@@ -65,6 +144,11 @@ body {
     .hero { padding: 32px 20px; }
     .hero h1 { font-size: 24px; }
     .nav-links { display: none; }
+    .search-box input { width: 100px; }
+    .ad-banner { max-width: 320px; height: 100px; }
+    .ad-skyscraper { width: 300px; height: 400px; }
+    .subscribe-form { flex-direction: column; align-items: center; }
+    .subscribe-form input { width: 100%; }
 }
 </style>
 </head>
@@ -79,54 +163,236 @@ body {
             <li><a href="index.html">主机游戏</a></li>
             <li><a href="index.html">新游评测</a></li>
         </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索游戏攻略...">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换夜间/日间模式">🌙</button>
     </div>
 </header>
+
+<!-- 头部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
 <main class="main">
     <section class="hero" style="background: linear-gradient(135deg, #1a2a3a, #2a1a1a);">
         <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🏆</div>
         <h1>英雄联盟攻略专题</h1>
         <div class="subtitle">League of Legends</div>
-        <p>《英雄联盟》是Riot Games开发的MOBA竞技游戏。S16赛季带来全新装备系统与地图改动。本专题涵盖各位置英雄攻略、版本强势分析、对线技巧与团战思路等核心内容。</p>
+        <p>《英雄联盟》是Riot Games开发的MOBA竞技网游，全球最受欢迎的PC游戏之一。玩家选择英雄组成5人队伍，在召唤师峡谷中与对手展开策略与操作的较量。</p>
+        <img class="hero-banner" src="https://picsum.photos/1200/400?random=7" alt="英雄联盟游戏Banner" loading="lazy" onerror="this.style.display='none'">
     </section>
+
     <section>
         <h2 class="section-title">攻略内容</h2>
         
             <div class="guide-card">
-                <h3>S16赛季各位置T0英雄</h3>
-                <p>上单、打野、中单、ADC、辅助五个位置的版本T0英雄推荐。详细分析每个英雄的符文搭配、出装顺序与克制关系。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>一、游戏简介</h3>
+                <p>《英雄联盟》于2009年10月27日在北美上线，国服于2011年9月22日由腾讯代理。经过十余年的发展，游戏已拥有超过160位英雄，每年举办全球总决赛（Worlds），是全球电竞产业的标杆。
+
+游戏的核心模式为5v5召唤师峡谷，双方各控制一名英雄，通过击杀小兵、野怪和敌方英雄获取金币和经验，购买装备提升实力，最终摧毁敌方水晶枢纽获得胜利。此外还有极地大乱斗（ARAM）、云顶之弈（TFT）等多种模式。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=70" alt="英雄联盟 - 一、游戏简介" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>对线技巧大全</h3>
-                <p>兵线管理、换血时机、视野控制、回城Timing等核心对线技能。各位置常见Matchup的对线思路与Counter Pick推荐。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>二、S16赛季各位置T0英雄</h3>
+                <p>【上单】
+- 剑魔（亚托克斯）：续航强、团战AOE高，黑切+血手+死亡之舞三件套成型后极难处理。
+- 奎桑提：坦克+战士双形态，对线压制力强，团战可以切后排。
+- 奥恩：团队型坦克，被动给队友升级装备，大招开团能力顶级。
+
+【打野】
+- 蔚：6级后gank成功率极高，大招锁定无法被净化。
+- 盲僧（李青）：高操作上限，前期节奏能力强，回旋踢改变团战。
+- 猪妹（瑟庄妮）：坦克打野，控制链充足，容错率高。
+
+【中单】
+- 阿狸：机动性强，多段位移，魅惑命中后爆发极高。
+- 辛德拉：线霸，推线快，6级斩杀线高。
+- 阿卡丽：高操作刺客，烟雾弹保命，多段位移切后排。
+
+【ADC】
+- 金克丝：后期大核，被动触发后收割能力极强。
+- 厄斐琉斯：武器组合多样，后期输出爆炸。
+- 卡莎：进化Q后爆发高，大招可切入后排。
+
+【辅助】
+- 洛：开团型辅助，R闪W连招控制链充足。
+- 露露：保护型辅助，变羊+护盾+大招让ADC无法被秒。
+- 锤石：全能型辅助，灯笼救人、钩子开团、E技能打断位移。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=71" alt="英雄联盟 - 二、S16赛季各位置T0英雄" loading="lazy">
+            </div>
+            <div class="ad-container">
+                <div class="ad-skyscraper">广告位预留 - 300x600</div>
             </div>
             <div class="guide-card">
-                <h3>团战思路与定位</h3>
-                <p>前排坦克、刺客、法师、ADC、辅助在团战中的职责定位。开团时机判断、集火目标选择与阵型保持的关键要点。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>三、上分策略与心态管理</h3>
+                <p>【英雄池管理】
+每个位置精通2-3个英雄即可，不要频繁换英雄。推荐选择版本强势且操作难度适中的英雄。Ban掉自己最怕的英雄，而不是跟风Ban。
+
+【对线技巧】
+1. 补刀是基础：10分钟70刀及格，80刀优秀，90刀完美。
+2. 兵线管理：学会推线、控线、慢推、快推四种兵线策略。
+3. 换血时机：在对手补刀时换血，利用技能+平A打出电刑/强攻。
+4. 视野控制：每回城必买控制守卫，关键时间点（3:15、6:00）在河道插眼。
+
+【心态管理】
+- 连败两局后休息15分钟，避免心态崩盘。
+- 不要打字喷队友，用信号沟通。
+- 每局只关注自己的表现，不要纠结队友的失误。
+- 看回放分析自己的死亡原因，每次死亡都是学习机会。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=72" alt="英雄联盟 - 三、上分策略与心态管理" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>打野路线与节奏</h3>
-                <p>S16赛季最优打野路线规划。Gank时机选择、反野策略、资源控制（龙/先锋/男爵）的优先级判断与团队协调。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>四、符文与出装思路</h3>
+                <p>【符文选择原则】
+- 精密系：持续输出英雄（ADC、战士），核心符文：致命节奏/征服者。
+- 主宰系：爆发刺客，核心符文：电刑/黑暗收割。
+- 巫术系：法师/消耗型英雄，核心符文：艾黎/彗星/相位猛冲。
+- 坚决系：坦克/辅助，核心符文：余震/守护者。
+- 启迪系：功能性符文，通常作为副系选择。
+
+【出装思路】
+- 核心装备优先：先出对英雄提升最大的第一件装备，不要为了小件拖慢节奏。
+- 鞋子升级时机：通常在第一个大件后升级二级鞋。
+- 针对性出装：对面AP多→魔抗装；AD多→护甲装；控制多→水银鞋/水银饰带；治疗多→重伤装备。
+- 保命装：秒表（650金）是性价比最高的保命装备，关键团战前必买。</p>
+                
+            </div>
+            <div class="guide-card">
+                <h3>五、常见问题FAQ</h3>
+                <p>Q：新手推荐什么英雄？
+A：上单盖伦、打野阿木木、中单安妮、ADC艾希、辅助索拉卡。这些英雄操作简单，机制直观，适合学习游戏基础。
+
+Q：如何快速提升段位？
+A：专注1-2个位置，精通2-3个英雄。每局看回放分析失误，学习高分段玩家的对线思路。
+
+Q：什么是ELO机制？
+A：ELO是隐藏分系统，系统会根据你的表现匹配相近水平的队友和对手。连胜后遇到的对手会越来越强。
+
+Q：排位和匹配有什么区别？
+A：排位有段位系统（黑铁→王者），胜负影响段位。匹配不显示段位，压力较小，适合练习新英雄。</p>
+                
             </div>
     </section>
+
+    <!-- 评论区 -->
+    <section class="comment-section">
+        <h2>发表评论</h2>
+        <div class="comment-form">
+            <input type="text" placeholder="你的昵称" id="commentName">
+            <input type="email" placeholder="邮箱（选填）" id="commentEmail">
+            <textarea placeholder="写下你的评论..." id="commentText"></textarea>
+            <button class="comment-submit" onclick="submitComment()">发表评论</button>
+        </div>
+        <div class="comment-list" id="commentList">
+            
+                <div class="comment-item">
+                    <div class="comment-author">游戏达人小王</div>
+                    <div class="comment-date">2026-05-22</div>
+                    <div class="comment-text">这篇攻略太详细了！照着打终于过了卡了很久的BOSS，感谢作者！</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">新手玩家阿明</div>
+                    <div class="comment-date">2026-05-20</div>
+                    <div class="comment-text">作为刚入坑的新手，这篇攻略对我帮助很大。希望能更新更多配装推荐。</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">硬核玩家老李</div>
+                    <div class="comment-date">2026-05-18</div>
+                    <div class="comment-text">内容很全面，但希望能补充更多高端技巧和隐藏内容。期待更新！</div>
+                </div>
+        </div>
+    </section>
 </main>
+
+<!-- 底部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
+<!-- 订阅区块 -->
+<section class="subscribe-section">
+    <h2>订阅最新攻略</h2>
+    <p>每周推送最新游戏攻略，不错过任何更新</p>
+    <div class="subscribe-form">
+        <input type="email" placeholder="输入你的邮箱地址" id="subscribeEmail">
+        <button onclick="doSubscribe()">立即订阅</button>
+    </div>
+</section>
+
 <footer class="footer">
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
+
+<script>
+// 搜索功能
+function doSearch() {
+    var q = document.getElementById('searchInput').value.trim();
+    if (q) { window.location.href = 'search.html?q=' + encodeURIComponent(q); }
+}
+
+// 夜间模式切换
+(function() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+        document.documentElement.style.setProperty('--bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--border', '#e0e0e0');
+        document.documentElement.style.setProperty('--text', '#1a1a1a');
+        document.documentElement.style.setProperty('--text-secondary', '#666666');
+        document.documentElement.style.setProperty('--tag-bg', '#f0f0f0');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+})();
+
+function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    if (btn.textContent === '🌙') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--card-bg', '#ffffff');
+        root.style.setProperty('--border', '#e0e0e0');
+        root.style.setProperty('--text', '#1a1a1a');
+        root.style.setProperty('--text-secondary', '#666666');
+        root.style.setProperty('--tag-bg', '#f0f0f0');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        root.style.setProperty('--bg', '#0f0f1a');
+        root.style.setProperty('--card-bg', '#1a1a2e');
+        root.style.setProperty('--border', '#2a2a4a');
+        root.style.setProperty('--text', '#e0e0e0');
+        root.style.setProperty('--text-secondary', '#a0a0b0');
+        root.style.setProperty('--tag-bg', '#252540');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// 评论提交
+function submitComment() {
+    var name = document.getElementById('commentName').value.trim();
+    var text = document.getElementById('commentText').value.trim();
+    if (!name || !text) { alert('请填写昵称和评论内容'); return; }
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var div = document.createElement('div');
+    div.className = 'comment-item';
+    div.innerHTML = '<div class="comment-author">' + name + '</div><div class="comment-date">' + dateStr + '</div><div class="comment-text">' + text + '</div>';
+    document.getElementById('commentList').prepend(div);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentText').value = '';
+}
+
+// 订阅
+function doSubscribe() {
+    var email = document.getElementById('subscribeEmail').value.trim();
+    if (!email) { alert('请输入邮箱地址'); return; }
+    alert('感谢订阅！我们会将最新攻略发送到 ' + email);
+    document.getElementById('subscribeEmail').value = '';
+}
+</script>
 </body>
 </html>

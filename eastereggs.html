@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>各大游戏隐藏彩蛋全收录 - GameGuide游戏攻略站</title>
+    <title>隐藏彩蛋专题攻略专题 - GameGuide游戏攻略站</title>
+    <meta name="description" content="隐藏彩蛋专题最全攻略：游戏中的隐藏彩蛋是开发者留给玩家的惊喜礼物。本专题收录了各大热门游戏中不为人知的秘密内容、隐藏结局触发方法和特殊道具获取途径，带你发现游戏世界的另一面。...">
     <style>:root {
     --bg: #0f0f1a;
     --card-bg: #1a1a2e;
@@ -13,6 +14,7 @@
     --text: #e0e0e0;
     --text-secondary: #a0a0b0;
     --gold: #f0a500;
+    --tag-bg: #252540;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -27,11 +29,21 @@ body {
     max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
     justify-content: space-between; height: 64px;
 }
-.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
+.search-box { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.search-box input { background: transparent; border: none; color: var(--text); padding: 8px 16px; font-size: 14px; width: 180px; outline: none; }
+.search-box input::placeholder { color: var(--text-secondary); }
+.search-box button { background: var(--accent); border: none; color: white; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+.search-box button:hover { background: var(--accent-hover); }
+.theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text); font-size: 18px;
+    cursor: pointer; padding: 6px 10px; border-radius: 8px; margin-left: 8px; transition: border-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
 .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 .hero {
     border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
@@ -40,6 +52,10 @@ body {
 .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
 .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
 .hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.hero-banner {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;
+    position: relative; z-index: 1; opacity: 0.8;
+}
 .section-title {
     font-size: 20px; font-weight: 700; margin-bottom: 20px;
     display: flex; align-items: center; gap: 12px;
@@ -51,12 +67,75 @@ body {
 }
 .guide-card:hover { border-color: var(--accent); }
 .guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
-.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-.guide-card .placeholder-img {
-    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-    font-size: 14px; flex-direction: column; gap: 8px;
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-line; }
+.guide-card .guide-img {
+    width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-top: 16px;
+    display: block; border: 1px solid var(--border);
 }
+/* 广告位样式 */
+.ad-container {
+    text-align: center; margin: 20px 0; padding: 20px;
+    background: var(--border); border: 2px dashed var(--accent);
+    border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;
+}
+.ad-banner {
+    width: 100%; max-width: 728px; height: 90px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+.ad-skyscraper {
+    width: 300px; height: 600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+/* 评论区 */
+.comment-section {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-top: 32px;
+}
+.comment-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.comment-form input, .comment-form textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-size: 14px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+}
+.comment-form input:focus, .comment-form textarea:focus { border-color: var(--accent); }
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-submit {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    align-self: flex-start; transition: background 0.2s;
+}
+.comment-submit:hover { background: var(--accent-hover); }
+.comment-list { display: flex; flex-direction: column; gap: 16px; }
+.comment-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+}
+.comment-item .comment-author { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.comment-item .comment-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.comment-item .comment-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+/* 订阅区块 */
+.subscribe-section {
+    background: linear-gradient(135deg, var(--card-bg), #2d1b69);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px; text-align: center; margin: 32px 0;
+}
+.subscribe-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.subscribe-section p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.subscribe-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.subscribe-form input {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 16px; font-size: 14px; outline: none;
+    width: 300px; max-width: 100%; transition: border-color 0.2s;
+}
+.subscribe-form input:focus { border-color: var(--accent); }
+.subscribe-form button {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.subscribe-form button:hover { background: var(--accent-hover); }
 .footer {
     text-align: center; padding: 32px; border-top: 1px solid var(--border);
     color: var(--text-secondary); font-size: 13px;
@@ -65,6 +144,11 @@ body {
     .hero { padding: 32px 20px; }
     .hero h1 { font-size: 24px; }
     .nav-links { display: none; }
+    .search-box input { width: 100px; }
+    .ad-banner { max-width: 320px; height: 100px; }
+    .ad-skyscraper { width: 300px; height: 400px; }
+    .subscribe-form { flex-direction: column; align-items: center; }
+    .subscribe-form input { width: 100%; }
 }
 </style>
 </head>
@@ -79,54 +163,244 @@ body {
             <li><a href="index.html">主机游戏</a></li>
             <li><a href="index.html">新游评测</a></li>
         </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索游戏攻略...">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换夜间/日间模式">🌙</button>
     </div>
 </header>
+
+<!-- 头部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
 <main class="main">
     <section class="hero" style="background: linear-gradient(135deg, #00b894, #55efc4);">
         <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🥚</div>
-        <h1>各大游戏隐藏彩蛋全收录</h1>
+        <h1>隐藏彩蛋专题攻略专题</h1>
         <div class="subtitle">Easter Eggs Collection</div>
-        <p>游戏开发者常常在作品中埋藏令人惊喜的隐藏内容——彩蛋（Easter Eggs）。从经典致敬到开发者自嘲，本专题收录各大热门游戏中那些鲜为人知的隐藏要素。</p>
+        <p>游戏中的隐藏彩蛋是开发者留给玩家的惊喜礼物。本专题收录了各大热门游戏中不为人知的秘密内容、隐藏结局触发方法和特殊道具获取途径，带你发现游戏世界的另一面。</p>
+        <img class="hero-banner" src="https://picsum.photos/1200/400?random=13" alt="隐藏彩蛋专题游戏Banner" loading="lazy" onerror="this.style.display='none'">
     </section>
+
     <section>
         <h2 class="section-title">攻略内容</h2>
         
             <div class="guide-card">
-                <h3>艾尔登法环隐藏区域</h3>
-                <p>深根底层、月光祭坛、癫火封印等隐藏地图的进入方法。无名永恒之城、弃置恶兆的地底等极其隐蔽区域的完整探索路线。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>一、艾尔登法环隐藏内容</h3>
+                <p>【隐藏BOSS】
+- 龙王普拉顿桑克斯：在 crumbling 天空城的隐藏区域，需要从特定悬崖跳下并精准落在平台上。
+- 死龙弗尔桑克斯：在深根底层，需要完成菲雅支线进入死王子的梦境。
+- 鲜血君王蒙格：在蒙格温王朝，可通过白面具梵雷的支线或化圣雪原的传送门到达。
+
+【隐藏结局】
+- 癫火之王：在王城下水道接受三指拥抱，全身被火焰灼烧。注意：一旦接受无法挽回（除非使用米凯拉的针）。
+- 星星时代：完成菈妮全部支线，在最终战后召唤菈妮。
+
+【隐藏武器】
+- 暗月大剑：完成菈妮支线的最终奖励，智力流最强武器之一。
+- 玛雷家行刑剑：击败艾琉诺拉（鲜血王朝入侵NPC）获得。
+- 尸山血海：击败血指老翁奥尼尔（巨人山顶）获得。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=130" alt="隐藏彩蛋专题 - 一、艾尔登法环隐藏内容" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>GTA系列都市传说</h3>
-                <p>从圣安地列斯的大脚怪到GTA5的Chiliad山之谜。最著名的都市传说真相、触发方法与社区流传的未解之谜。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>二、黑神话悟空隐藏内容</h3>
+                <p>【隐藏BOSS】
+- 二郎神：完成前五章所有隐藏区域后，在花果山特定位置触发。这是游戏中最难的BOSS战。
+- 大石敢当：在花果山收集全部佛目珠后触发。
+- 毒敌大王：在盘丝岭完成特定支线后触发。
+
+【隐藏区域】
+- 旧观音禅院（第一章）：敲响三口钟后解锁。
+- 斯哈里国（第二章）：完成石先锋支线后解锁。
+- 瓜田（第三章）：完成翠笠武师支线后解锁。
+- 紫云山（第四章）：完成糜道人支线后解锁。
+- 璧水洞（第五章）：完成牛魔王支线后解锁。
+
+【隐藏道具】
+- 大圣套装：完成全部隐藏区域后获得。
+- 金箍棒：击败二郎神后获得。
+- 避火罩/定风珠/避雷符/避毒丹：各章节隐藏区域获取。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=131" alt="隐藏彩蛋专题 - 二、黑神话悟空隐藏内容" loading="lazy">
+            </div>
+            <div class="ad-container">
+                <div class="ad-skyscraper">广告位预留 - 300x600</div>
             </div>
             <div class="guide-card">
-                <h3>巫师3开发者致敬</h3>
-                <p>CD Projekt Red在游戏中埋藏的各类彩蛋：刺客信条干草堆、黑暗之魂篝火、权力的游戏角色、以及各种打破第四面墙的趣味对话。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>三、原神隐藏内容</h3>
+                <p>【隐藏任务】
+- 「时与风」（蒙德）：在无人岛触发，需要调整时间到凌晨2-5点。
+- 「古云有螭」（璃月）：在轻策庄触发，需要收集三块碎片。
+- 「踏鞴物语」（稻妻）：在踏鞴砂连续7天完成每日任务。
+- 「森林书」（须弥）：超长世界任务系列，完成后解锁大量区域。
+
+【隐藏成就】
+- 「天雷圣裁」：被雷劈中（蒙德誓言岬雷雨天）。
+- 「十岁差点打倒野猪」：被野猪撞死。
+- 「你其实听得见吧？」：在派蒙说话时调低音量。
+
+【隐藏宝箱】
+- 蒙德城教堂顶：爬上教堂尖顶。
+- 璃月港山顶：爬上最高建筑。
+- 稻妻鸣神大社：神樱树顶。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=132" alt="隐藏彩蛋专题 - 三、原神隐藏内容" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>赛博朋克2077隐藏要素</h3>
-                <p>强尼·银手的隐藏对话、夜之城的秘密地点、电影与动漫的致敬场景。含边缘行者动画相关的全数彩蛋位置。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>四、博德之门3隐藏内容</h3>
+                <p>【隐藏队友】
+- 明萨拉：帮助地精营地进攻德鲁伊林地后可招募（圣武士）。
+- 明斯克：在第三章下水道中救出后招募（游侠）。
+- 贾希拉：在第二章月出之塔救出后招募（德鲁伊）。
+
+【隐藏结局】
+- 成为夺心魔：接受蝌蚪的全部力量，最终转化为夺心魔。
+- 控制耐色脑：使用耐色石控制主脑，成为绝对者。
+- 牺牲盖尔：让盖尔在最终战自爆，直接结束游戏。
+
+【隐藏装备】
+- 博德安的巨人杀手：第三章巨龙安苏掉落，最强巨剑。
+- 洛山达之血：第一章修道院隐藏区域，最强钉头锤。
+- 地狱黄昏护甲：第三章拉斐尔宅邸，最强重甲。</p>
+                
+            </div>
+            <div class="guide-card">
+                <h3>五、其他游戏彩蛋精选</h3>
+                <p>【CS2 彩蛋】
+- 在Dust2的B洞可以看到CS 1.6的经典画面（壁画）。
+- 在Inferno的教堂里可以听到管风琴音乐。
+- 小鸡是CS系列的吉祥物，每张地图都有隐藏小鸡。
+
+【星露谷物语 彩蛋】
+- 在标题画面点击树叶10次会出现ConcernedApe的Logo动画。
+- 把奇怪的小面包放在特定位置可以召唤外星人。
+- 在秋季13日晚上12点后去秘密森林可以看到幽灵。
+
+【APEX英雄 彩蛋】
+- 训练场中有尼斯湖水怪玩偶，射击10个可以召唤巨型尼斯湖水怪。
+- 诸王峡谷有泰坦陨落2的BT-7274彩蛋。
+- 奥林匹斯有开发者房间，需要通过特定传送门进入。</p>
+                
             </div>
     </section>
+
+    <!-- 评论区 -->
+    <section class="comment-section">
+        <h2>发表评论</h2>
+        <div class="comment-form">
+            <input type="text" placeholder="你的昵称" id="commentName">
+            <input type="email" placeholder="邮箱（选填）" id="commentEmail">
+            <textarea placeholder="写下你的评论..." id="commentText"></textarea>
+            <button class="comment-submit" onclick="submitComment()">发表评论</button>
+        </div>
+        <div class="comment-list" id="commentList">
+            
+                <div class="comment-item">
+                    <div class="comment-author">游戏达人小王</div>
+                    <div class="comment-date">2026-05-22</div>
+                    <div class="comment-text">这篇攻略太详细了！照着打终于过了卡了很久的BOSS，感谢作者！</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">新手玩家阿明</div>
+                    <div class="comment-date">2026-05-20</div>
+                    <div class="comment-text">作为刚入坑的新手，这篇攻略对我帮助很大。希望能更新更多配装推荐。</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">硬核玩家老李</div>
+                    <div class="comment-date">2026-05-18</div>
+                    <div class="comment-text">内容很全面，但希望能补充更多高端技巧和隐藏内容。期待更新！</div>
+                </div>
+        </div>
+    </section>
 </main>
+
+<!-- 底部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
+<!-- 订阅区块 -->
+<section class="subscribe-section">
+    <h2>订阅最新攻略</h2>
+    <p>每周推送最新游戏攻略，不错过任何更新</p>
+    <div class="subscribe-form">
+        <input type="email" placeholder="输入你的邮箱地址" id="subscribeEmail">
+        <button onclick="doSubscribe()">立即订阅</button>
+    </div>
+</section>
+
 <footer class="footer">
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
+
+<script>
+// 搜索功能
+function doSearch() {
+    var q = document.getElementById('searchInput').value.trim();
+    if (q) { window.location.href = 'search.html?q=' + encodeURIComponent(q); }
+}
+
+// 夜间模式切换
+(function() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+        document.documentElement.style.setProperty('--bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--border', '#e0e0e0');
+        document.documentElement.style.setProperty('--text', '#1a1a1a');
+        document.documentElement.style.setProperty('--text-secondary', '#666666');
+        document.documentElement.style.setProperty('--tag-bg', '#f0f0f0');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+})();
+
+function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    if (btn.textContent === '🌙') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--card-bg', '#ffffff');
+        root.style.setProperty('--border', '#e0e0e0');
+        root.style.setProperty('--text', '#1a1a1a');
+        root.style.setProperty('--text-secondary', '#666666');
+        root.style.setProperty('--tag-bg', '#f0f0f0');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        root.style.setProperty('--bg', '#0f0f1a');
+        root.style.setProperty('--card-bg', '#1a1a2e');
+        root.style.setProperty('--border', '#2a2a4a');
+        root.style.setProperty('--text', '#e0e0e0');
+        root.style.setProperty('--text-secondary', '#a0a0b0');
+        root.style.setProperty('--tag-bg', '#252540');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// 评论提交
+function submitComment() {
+    var name = document.getElementById('commentName').value.trim();
+    var text = document.getElementById('commentText').value.trim();
+    if (!name || !text) { alert('请填写昵称和评论内容'); return; }
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var div = document.createElement('div');
+    div.className = 'comment-item';
+    div.innerHTML = '<div class="comment-author">' + name + '</div><div class="comment-date">' + dateStr + '</div><div class="comment-text">' + text + '</div>';
+    document.getElementById('commentList').prepend(div);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentText').value = '';
+}
+
+// 订阅
+function doSubscribe() {
+    var email = document.getElementById('subscribeEmail').value.trim();
+    if (!email) { alert('请输入邮箱地址'); return; }
+    alert('感谢订阅！我们会将最新攻略发送到 ' + email);
+    document.getElementById('subscribeEmail').value = '';
+}
+</script>
 </body>
 </html>

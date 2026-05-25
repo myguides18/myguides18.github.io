@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>原神攻略专题 - GameGuide游戏攻略站</title>
+    <meta name="description" content="原神最全攻略：《原神》是米哈游开发的开放世界动作RPG，以七种元素交汇的「提瓦特」大陆为舞台。玩家将扮演「旅行者」，在寻找失散亲人的旅途中，邂逅性格各异的同伴，探索七国的秘密...">
     <style>:root {
     --bg: #0f0f1a;
     --card-bg: #1a1a2e;
@@ -13,6 +14,7 @@
     --text: #e0e0e0;
     --text-secondary: #a0a0b0;
     --gold: #f0a500;
+    --tag-bg: #252540;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -27,11 +29,21 @@ body {
     max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
     justify-content: space-between; height: 64px;
 }
-.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
+.search-box { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.search-box input { background: transparent; border: none; color: var(--text); padding: 8px 16px; font-size: 14px; width: 180px; outline: none; }
+.search-box input::placeholder { color: var(--text-secondary); }
+.search-box button { background: var(--accent); border: none; color: white; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+.search-box button:hover { background: var(--accent-hover); }
+.theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text); font-size: 18px;
+    cursor: pointer; padding: 6px 10px; border-radius: 8px; margin-left: 8px; transition: border-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
 .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 .hero {
     border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
@@ -40,6 +52,10 @@ body {
 .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
 .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
 .hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.hero-banner {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;
+    position: relative; z-index: 1; opacity: 0.8;
+}
 .section-title {
     font-size: 20px; font-weight: 700; margin-bottom: 20px;
     display: flex; align-items: center; gap: 12px;
@@ -51,12 +67,75 @@ body {
 }
 .guide-card:hover { border-color: var(--accent); }
 .guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
-.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-.guide-card .placeholder-img {
-    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-    font-size: 14px; flex-direction: column; gap: 8px;
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-line; }
+.guide-card .guide-img {
+    width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-top: 16px;
+    display: block; border: 1px solid var(--border);
 }
+/* 广告位样式 */
+.ad-container {
+    text-align: center; margin: 20px 0; padding: 20px;
+    background: var(--border); border: 2px dashed var(--accent);
+    border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;
+}
+.ad-banner {
+    width: 100%; max-width: 728px; height: 90px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+.ad-skyscraper {
+    width: 300px; height: 600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+/* 评论区 */
+.comment-section {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-top: 32px;
+}
+.comment-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.comment-form input, .comment-form textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-size: 14px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+}
+.comment-form input:focus, .comment-form textarea:focus { border-color: var(--accent); }
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-submit {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    align-self: flex-start; transition: background 0.2s;
+}
+.comment-submit:hover { background: var(--accent-hover); }
+.comment-list { display: flex; flex-direction: column; gap: 16px; }
+.comment-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+}
+.comment-item .comment-author { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.comment-item .comment-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.comment-item .comment-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+/* 订阅区块 */
+.subscribe-section {
+    background: linear-gradient(135deg, var(--card-bg), #2d1b69);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px; text-align: center; margin: 32px 0;
+}
+.subscribe-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.subscribe-section p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.subscribe-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.subscribe-form input {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 16px; font-size: 14px; outline: none;
+    width: 300px; max-width: 100%; transition: border-color 0.2s;
+}
+.subscribe-form input:focus { border-color: var(--accent); }
+.subscribe-form button {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.subscribe-form button:hover { background: var(--accent-hover); }
 .footer {
     text-align: center; padding: 32px; border-top: 1px solid var(--border);
     color: var(--text-secondary); font-size: 13px;
@@ -65,6 +144,11 @@ body {
     .hero { padding: 32px 20px; }
     .hero h1 { font-size: 24px; }
     .nav-links { display: none; }
+    .search-box input { width: 100px; }
+    .ad-banner { max-width: 320px; height: 100px; }
+    .ad-skyscraper { width: 300px; height: 400px; }
+    .subscribe-form { flex-direction: column; align-items: center; }
+    .subscribe-form input { width: 100%; }
 }
 </style>
 </head>
@@ -79,54 +163,213 @@ body {
             <li><a href="index.html">主机游戏</a></li>
             <li><a href="index.html">新游评测</a></li>
         </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索游戏攻略...">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换夜间/日间模式">🌙</button>
     </div>
 </header>
+
+<!-- 头部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
 <main class="main">
     <section class="hero" style="background: linear-gradient(135deg, #2a1a1a, #1a2a3a);">
         <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🏹</div>
         <h1>原神攻略专题</h1>
         <div class="subtitle">Genshin Impact</div>
-        <p>《原神》是米哈游开发的开放世界冒险RPG。玩家在提瓦特大陆上自由探索，邂逅性格各异的伙伴。本专题聚焦深渊攻略、角色培养、版本活动等实用内容。</p>
+        <p>《原神》是米哈游开发的开放世界动作RPG，以七种元素交汇的「提瓦特」大陆为舞台。玩家将扮演「旅行者」，在寻找失散亲人的旅途中，邂逅性格各异的同伴，探索七国的秘密。</p>
+        <img class="hero-banner" src="https://picsum.photos/1200/400?random=3" alt="原神游戏Banner" loading="lazy" onerror="this.style.display='none'">
     </section>
+
     <section>
         <h2 class="section-title">攻略内容</h2>
         
             <div class="guide-card">
-                <h3>深渊螺旋满星攻略</h3>
-                <p>5.6版本深渊12层环境分析与推荐阵容。上半与下半的最优配队方案、怪物刷新规律与元素克制策略。平民阵容也能轻松拿满星。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>一、游戏简介</h3>
+                <p>《原神》于2020年9月28日全球公测，登陆PC、PS4、PS5、iOS和Android平台，支持跨平台联机。游戏采用免费游玩+内购抽卡模式，但所有内容均可免费体验。目前已开放蒙德、璃月、稻妻、须弥、枫丹、纳塔六个国家，每个国家都有独特的文化背景、角色设计和战斗机制。
+
+游戏的核心玩法包括：大世界探索（攀爬、滑翔、游泳）、元素战斗系统（七种元素相互反应）、角色养成（升级、突破、天赋、圣遗物）、深境螺旋挑战、尘歌壶家园系统、七圣召唤卡牌游戏等。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=30" alt="原神 - 一、游戏简介" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>新角色强度评测</h3>
-                <p>最新五星角色的强度分析、推荐武器与圣遗物搭配。各命座提升幅度测算，以及在各主流队伍中的实战表现。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>二、元素反应系统详解</h3>
+                <p>元素反应是原神战斗的核心机制，理解反应是提升输出的关键：
+
+【增幅反应】蒸发（水+火）：1.5倍/2倍伤害；融化（火+冰）：1.5倍/2倍伤害。伤害取决于触发顺序，火打水为1.5倍，水打火为2倍。
+
+【剧变反应】超载（火+雷）：范围火伤+击飞；感电（水+雷）：持续雷伤+连锁；超导（冰+雷）：范围冰伤+减物抗40%；扩散（风+任意）：扩散元素+减抗（需翠绿之影4件套）；绽放（水+草）：生成草原核，一定时间后爆炸；超绽放（草原核+雷）：追踪弹；烈绽放（草原核+火）：范围爆炸。
+
+【增益反应】激化（雷+草）：使敌人进入原激化状态，后续雷伤触发超激化（增伤），草伤触发蔓激化（增伤）。冻结（水+冰）：冻结敌人，碎冰（大剑/岩攻击冻结敌人）造成额外物理伤害。结晶（岩+任意）：生成对应元素护盾。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=31" alt="原神 - 二、元素反应系统详解" loading="lazy">
+            </div>
+            <div class="ad-container">
+                <div class="ad-skyscraper">广告位预留 - 300x600</div>
             </div>
             <div class="guide-card">
-                <h3>圣遗物刷取效率指南</h3>
-                <p>各角色最优圣遗物套装选择，刷取副本的路线规划与树脂分配策略。合成台三合一素材的利用技巧。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>三、深渊12层满星阵容推荐</h3>
+                <p>【上半阵容推荐】
+1. 那维莱特+芙宁娜+枫原万叶+白术：当前版本最强队伍，那维莱特重击输出极高，芙宁娜提供增伤，万叶聚怪减抗，白术提供治疗和护盾。
+2. 艾尔海森+八重神子+纳西妲+钟离：激化队，艾尔海森站场输出，八重神子后台雷伤，纳西妲提供精通加成，钟离提供最强护盾。
+
+【下半阵容推荐】
+1. 胡桃+夜兰+行秋+钟离：经典蒸发队，胡桃重击蒸发伤害极高，夜兰和行秋提供后台水伤，钟离护盾保证胡桃低血量安全输出。
+2. 雷电将军+九条裟罗+枫原万叶+班尼特：雷九万班，雷电将军爆发伤害天花板，九条裟罗提供攻击和暴伤加成，万叶减抗，班尼特加攻。
+
+【平民阵容】
+香菱+行秋+班尼特+砂糖：国家队变体，全四星角色，培养成本低，深渊表现稳定。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=32" alt="原神 - 三、深渊12层满星阵容推荐" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>探索与解谜</h3>
-                <p>新区域全神瞳位置、隐藏任务触发条件、复杂机关解谜步骤的图文攻略。世界任务全流程与隐藏成就解锁方法。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>四、角色培养优先级</h3>
+                <p>【必练辅助角色】
+- 班尼特：提供巨额攻击力加成和治疗，6星真神，任何队伍都能用。
+- 行秋：后台高频挂水+减伤+微量治疗，蒸发队和绽放队核心。
+- 香菱：后台高频挂火，锁面板机制配合班尼特伤害极高。
+- 枫原万叶：聚怪+元素增伤+减抗，泛用性最强的风系辅助。
+- 钟离：最强护盾，全元素减抗20%，让游戏变成简单模式。
+- 纳西妲：草系核心，提供精通加成和后台挂草。
+
+【圣遗物刷取建议】
+优先刷取绝缘之旗印（雷神/香菱/行秋/夜兰通用）、深林的记忆（纳西妲/草系通用）、翠绿之影（万叶/风系通用）。这三套圣遗物覆盖了大部分主流角色。</p>
+                
+            </div>
+            <div class="guide-card">
+                <h3>五、常见问题FAQ</h3>
+                <p>Q：新手抽什么角色好？
+A：优先抽取当前UP的强力主C（如那维莱特、艾尔海森、胡桃），然后补辅助（枫原万叶、钟离、纳西妲）。不要用原石抽常驻池。
+
+Q：树脂怎么分配？
+A：45级前不要用脆弱树脂，45级后优先刷主C的圣遗物主词条，然后刷天赋书和武器突破材料。
+
+Q：月卡值得买吗？
+A：空月祝福（30元/月）是最划算的充值方式，共获得3000原石。珍珠纪行（68元/期）提供大量养成资源和一把纪行武器，性价比也很高。
+
+Q：如何快速提升冒险等级？
+A：完成每日委托、消耗树脂、探索大世界开宝箱、完成世界任务和传说任务。</p>
+                
             </div>
     </section>
+
+    <!-- 评论区 -->
+    <section class="comment-section">
+        <h2>发表评论</h2>
+        <div class="comment-form">
+            <input type="text" placeholder="你的昵称" id="commentName">
+            <input type="email" placeholder="邮箱（选填）" id="commentEmail">
+            <textarea placeholder="写下你的评论..." id="commentText"></textarea>
+            <button class="comment-submit" onclick="submitComment()">发表评论</button>
+        </div>
+        <div class="comment-list" id="commentList">
+            
+                <div class="comment-item">
+                    <div class="comment-author">游戏达人小王</div>
+                    <div class="comment-date">2026-05-22</div>
+                    <div class="comment-text">这篇攻略太详细了！照着打终于过了卡了很久的BOSS，感谢作者！</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">新手玩家阿明</div>
+                    <div class="comment-date">2026-05-20</div>
+                    <div class="comment-text">作为刚入坑的新手，这篇攻略对我帮助很大。希望能更新更多配装推荐。</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">硬核玩家老李</div>
+                    <div class="comment-date">2026-05-18</div>
+                    <div class="comment-text">内容很全面，但希望能补充更多高端技巧和隐藏内容。期待更新！</div>
+                </div>
+        </div>
+    </section>
 </main>
+
+<!-- 底部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
+<!-- 订阅区块 -->
+<section class="subscribe-section">
+    <h2>订阅最新攻略</h2>
+    <p>每周推送最新游戏攻略，不错过任何更新</p>
+    <div class="subscribe-form">
+        <input type="email" placeholder="输入你的邮箱地址" id="subscribeEmail">
+        <button onclick="doSubscribe()">立即订阅</button>
+    </div>
+</section>
+
 <footer class="footer">
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
+
+<script>
+// 搜索功能
+function doSearch() {
+    var q = document.getElementById('searchInput').value.trim();
+    if (q) { window.location.href = 'search.html?q=' + encodeURIComponent(q); }
+}
+
+// 夜间模式切换
+(function() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+        document.documentElement.style.setProperty('--bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--border', '#e0e0e0');
+        document.documentElement.style.setProperty('--text', '#1a1a1a');
+        document.documentElement.style.setProperty('--text-secondary', '#666666');
+        document.documentElement.style.setProperty('--tag-bg', '#f0f0f0');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+})();
+
+function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    if (btn.textContent === '🌙') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--card-bg', '#ffffff');
+        root.style.setProperty('--border', '#e0e0e0');
+        root.style.setProperty('--text', '#1a1a1a');
+        root.style.setProperty('--text-secondary', '#666666');
+        root.style.setProperty('--tag-bg', '#f0f0f0');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        root.style.setProperty('--bg', '#0f0f1a');
+        root.style.setProperty('--card-bg', '#1a1a2e');
+        root.style.setProperty('--border', '#2a2a4a');
+        root.style.setProperty('--text', '#e0e0e0');
+        root.style.setProperty('--text-secondary', '#a0a0b0');
+        root.style.setProperty('--tag-bg', '#252540');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// 评论提交
+function submitComment() {
+    var name = document.getElementById('commentName').value.trim();
+    var text = document.getElementById('commentText').value.trim();
+    if (!name || !text) { alert('请填写昵称和评论内容'); return; }
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var div = document.createElement('div');
+    div.className = 'comment-item';
+    div.innerHTML = '<div class="comment-author">' + name + '</div><div class="comment-date">' + dateStr + '</div><div class="comment-text">' + text + '</div>';
+    document.getElementById('commentList').prepend(div);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentText').value = '';
+}
+
+// 订阅
+function doSubscribe() {
+    var email = document.getElementById('subscribeEmail').value.trim();
+    if (!email) { alert('请输入邮箱地址'); return; }
+    alert('感谢订阅！我们会将最新攻略发送到 ' + email);
+    document.getElementById('subscribeEmail').value = '';
+}
+</script>
 </body>
 </html>

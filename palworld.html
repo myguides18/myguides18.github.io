@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>幻兽帕鲁攻略专题 - GameGuide游戏攻略站</title>
+    <meta name="description" content="幻兽帕鲁最全攻略：《幻兽帕鲁》是Pocketpair开发的开放世界生存制作游戏，融合了宝可梦式的宠物收集与方舟式的生存建造。玩家可以捕捉100多种「帕鲁」，让它们协助战斗、建造基...">
     <style>:root {
     --bg: #0f0f1a;
     --card-bg: #1a1a2e;
@@ -13,6 +14,7 @@
     --text: #e0e0e0;
     --text-secondary: #a0a0b0;
     --gold: #f0a500;
+    --tag-bg: #252540;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -27,11 +29,21 @@ body {
     max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
     justify-content: space-between; height: 64px;
 }
-.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; }
+.logo { font-size: 24px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; }
 .logo span { color: var(--gold); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
+.search-box { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.search-box input { background: transparent; border: none; color: var(--text); padding: 8px 16px; font-size: 14px; width: 180px; outline: none; }
+.search-box input::placeholder { color: var(--text-secondary); }
+.search-box button { background: var(--accent); border: none; color: white; padding: 8px 16px; cursor: pointer; font-size: 14px; }
+.search-box button:hover { background: var(--accent-hover); }
+.theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text); font-size: 18px;
+    cursor: pointer; padding: 6px 10px; border-radius: 8px; margin-left: 8px; transition: border-color 0.2s;
+}
+.theme-toggle:hover { border-color: var(--accent); }
 .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
 .hero {
     border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center;
@@ -40,6 +52,10 @@ body {
 .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
 .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; position: relative; z-index: 1; }
 .hero p { color: var(--text-secondary); font-size: 15px; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.7; }
+.hero-banner {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 20px;
+    position: relative; z-index: 1; opacity: 0.8;
+}
 .section-title {
     font-size: 20px; font-weight: 700; margin-bottom: 20px;
     display: flex; align-items: center; gap: 12px;
@@ -51,12 +67,75 @@ body {
 }
 .guide-card:hover { border-color: var(--accent); }
 .guide-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
-.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-.guide-card .placeholder-img {
-    height: 200px; background: var(--border); border-radius: 8px; margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-    font-size: 14px; flex-direction: column; gap: 8px;
+.guide-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-line; }
+.guide-card .guide-img {
+    width: 100%; max-width: 600px; height: auto; border-radius: 8px; margin-top: 16px;
+    display: block; border: 1px solid var(--border);
 }
+/* 广告位样式 */
+.ad-container {
+    text-align: center; margin: 20px 0; padding: 20px;
+    background: var(--border); border: 2px dashed var(--accent);
+    border-radius: 8px; color: var(--text-secondary); font-size: 14px; font-weight: 500;
+}
+.ad-banner {
+    width: 100%; max-width: 728px; height: 90px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+.ad-skyscraper {
+    width: 300px; height: 600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(42, 42, 74, 0.5);
+}
+/* 评论区 */
+.comment-section {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; margin-top: 32px;
+}
+.comment-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.comment-form input, .comment-form textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 14px; font-size: 14px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+}
+.comment-form input:focus, .comment-form textarea:focus { border-color: var(--accent); }
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-submit {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    align-self: flex-start; transition: background 0.2s;
+}
+.comment-submit:hover { background: var(--accent-hover); }
+.comment-list { display: flex; flex-direction: column; gap: 16px; }
+.comment-item {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px;
+}
+.comment-item .comment-author { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.comment-item .comment-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.comment-item .comment-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+/* 订阅区块 */
+.subscribe-section {
+    background: linear-gradient(135deg, var(--card-bg), #2d1b69);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px; text-align: center; margin: 32px 0;
+}
+.subscribe-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.subscribe-section p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+.subscribe-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.subscribe-form input {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); padding: 10px 16px; font-size: 14px; outline: none;
+    width: 300px; max-width: 100%; transition: border-color 0.2s;
+}
+.subscribe-form input:focus { border-color: var(--accent); }
+.subscribe-form button {
+    background: var(--accent); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.subscribe-form button:hover { background: var(--accent-hover); }
 .footer {
     text-align: center; padding: 32px; border-top: 1px solid var(--border);
     color: var(--text-secondary); font-size: 13px;
@@ -65,6 +144,11 @@ body {
     .hero { padding: 32px 20px; }
     .hero h1 { font-size: 24px; }
     .nav-links { display: none; }
+    .search-box input { width: 100px; }
+    .ad-banner { max-width: 320px; height: 100px; }
+    .ad-skyscraper { width: 300px; height: 400px; }
+    .subscribe-form { flex-direction: column; align-items: center; }
+    .subscribe-form input { width: 100%; }
 }
 </style>
 </head>
@@ -79,54 +163,233 @@ body {
             <li><a href="index.html">主机游戏</a></li>
             <li><a href="index.html">新游评测</a></li>
         </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索游戏攻略...">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换夜间/日间模式">🌙</button>
     </div>
 </header>
+
+<!-- 头部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
 <main class="main">
     <section class="hero" style="background: linear-gradient(135deg, #1a1a3a, #2a2a1a);">
         <div style="font-size:64px;margin-bottom:12px;position:relative;z-index:1;">🎮</div>
         <h1>幻兽帕鲁攻略专题</h1>
         <div class="subtitle">Palworld</div>
-        <p>《幻兽帕鲁》是一款集生存建造、宠物收集与射击战斗于一体的开放世界游戏。在广阔的世界中捕捉「帕鲁」伙伴，建设基地、制作装备、挑战强敌。本专题从新手入门到后期进阶一应俱全。</p>
+        <p>《幻兽帕鲁》是Pocketpair开发的开放世界生存制作游戏，融合了宝可梦式的宠物收集与方舟式的生存建造。玩家可以捕捉100多种「帕鲁」，让它们协助战斗、建造基地、生产资源。</p>
+        <img class="hero-banner" src="https://picsum.photos/1200/400?random=4" alt="幻兽帕鲁游戏Banner" loading="lazy" onerror="this.style.display='none'">
     </section>
+
     <section>
         <h2 class="section-title">攻略内容</h2>
         
             <div class="guide-card">
-                <h3>新手开荒完全指南</h3>
-                <p>从第一天开始的完整开荒流程：初期最强帕鲁捕捉顺序、基础资源获取优先级、基地选址建议与第一台工作台的搭建。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>一、游戏简介</h3>
+                <p>《幻兽帕鲁》于2024年1月19日在Steam开启抢先体验，首月销量突破2500万份，成为现象级游戏。游戏支持单人游玩和最多32人联机。玩家在帕鲁群岛中探索、生存、建造，捕捉各种帕鲁来协助自己。
+
+游戏的核心特色在于帕鲁的多功能性：它们不仅是战斗伙伴，还可以在基地中从事各种工作——采矿、伐木、种植、烹饪、手工制作等。玩家可以建立自动化生产线，让帕鲁们24小时不间断工作。游戏还支持枪械制作，玩家可以手持突击步枪与帕鲁并肩作战。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=40" alt="幻兽帕鲁 - 一、游戏简介" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>配种公式大全</h3>
-                <p>最新版本全帕鲁配种组合表。稀有帕鲁的最优配种路线、被动技能遗传机制详解与完美帕鲁的培育策略。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>二、新手开荒指南</h3>
+                <p>【第一天：生存基础】
+1. 出生后先收集木材和石头，制作基础工具（石镐、石斧）。
+2. 捕捉第一批帕鲁：棉悠悠（采集）、捣蛋猫（手工）、草莽猪（采矿）。
+3. 建立帕鲁终端（基地核心），放置帕鲁床和饲料箱。
+4. 制作简易工作台，解锁基础科技。
+
+【第二天：基地建设】
+1. 升级帕鲁终端到Lv.10，解锁第二个基地。
+2. 建造伐木场、采石场，让帕鲁自动采集资源。
+3. 捕捉「烽歌龙」（飞行坐骑），解锁空中移动能力。
+4. 制作金属镐和金属斧，开始采集金属矿。
+
+【第三天：工业化起步】
+1. 建造熔炉，将金属矿冶炼成金属锭。
+2. 捕捉「阿努比斯」（手工4级），大幅提升制作速度。
+3. 建造生产线，制作高级球和武器。
+4. 开始探索地下城，获取古代科技点。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=41" alt="幻兽帕鲁 - 二、新手开荒指南" loading="lazy">
+            </div>
+            <div class="ad-container">
+                <div class="ad-skyscraper">广告位预留 - 300x600</div>
             </div>
             <div class="guide-card">
-                <h3>基地建设最优方案</h3>
-                <p>生产效率最大化的基地布局设计。帕鲁工作分配的效率原则、自动化产线的搭建方法，以及防御设施的合理部署。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>三、最强帕鲁推荐</h3>
+                <p>【战斗型帕鲁】
+- 杰特拉贡（S级）：龙属性，技能伤害极高，骑乘时攻击力翻倍。
+- 焰煌（S级）：火属性，范围伤害巨大，适合清理群怪。
+- 覆海龙（A级）：水属性，持续伤害能力强，BOSS战表现出色。
+- 混沌骑士（A级）：暗属性，高暴击率，单体爆发极高。
+
+【工作型帕鲁】
+- 阿努比斯（手工4级+采矿3级）：最强手工帕鲁，制作速度极快。
+- 焰巫狐（生火3级）：冶炼速度最快的火属性帕鲁。
+- 碧海龙（浇水3级）：浇水效率最高的帕鲁。
+- 百合女王（种植4级）：种植和收获速度极快。
+
+【坐骑型帕鲁】
+- 烽歌龙：前期最佳飞行坐骑，速度快耐力好。
+- 云海鹿：地面最快坐骑，二段跳+冲刺。
+- 天羽龙：后期最强飞行坐骑，速度最快。</p>
+                <img class="guide-img" src="https://picsum.photos/600/400?random=42" alt="幻兽帕鲁 - 三、最强帕鲁推荐" loading="lazy">
             </div>
             <div class="guide-card">
-                <h3>高塔BOSS挑战攻略</h3>
-                <p>各高塔BOSS的属性弱点与推荐帕鲁阵容。单人与多人模式的最佳战术差异，以及各BOSS的专属掉落物一览。</p>
-                <div class="placeholder-img">
-                    <span style="font-size:32px">📷</span>
-                    <span>攻略配图占位区域</span>
-                </div>
+                <h3>四、配种公式大全</h3>
+                <p>配种是获取稀有帕鲁的最佳方式。将一公一母两只帕鲁放入配种牧场，放入蛋糕后即可产蛋。
+
+【热门配种公式】
+- 阿努比斯 = 烽歌龙 + 草莽猪（最容易获取的配方）
+- 杰特拉贡 = 焰煌 + 覆海龙
+- 混沌骑士 = 阿努比斯 + 烽歌龙
+- 百合女王 = 碧海龙 + 焰巫狐
+- 天羽龙 = 杰特拉贡 + 云海鹿
+
+【配种技巧】
+1. 子代的种族由父母的「配种值」平均值决定，不是随机继承。
+2. 子代有概率继承父母的优秀个体值和被动技能。
+3. 使用「神速」「运动健将」「突袭指挥官」等被动技能的父母，可以培育出更强的后代。
+4. 蛋糕配方：面粉+红色野莓+牛奶+鸡蛋+蜂蜜。</p>
+                
+            </div>
+            <div class="guide-card">
+                <h3>五、常见问题FAQ</h3>
+                <p>Q：游戏有主线剧情吗？
+A：目前EA阶段以自由探索为主，有高塔BOSS挑战作为阶段性目标。正式版将加入完整剧情。
+
+Q：帕鲁会死吗？
+A：帕鲁在战斗中HP归零后会进入「濒死」状态，需要在帕鲁终端中复活（等待10分钟或使用道具）。不会永久死亡。
+
+Q：如何快速升级？
+A：捕捉帕鲁是升级最快的方式，每捕捉一种新帕鲁的前10只都有额外经验加成。其次是挑战地下城BOSS和高塔BOSS。
+
+Q：服务器怎么选？
+A：官方服务器最多32人，但资源竞争激烈。推荐和朋友开私人服务器（4-8人），体验最佳。</p>
+                
             </div>
     </section>
+
+    <!-- 评论区 -->
+    <section class="comment-section">
+        <h2>发表评论</h2>
+        <div class="comment-form">
+            <input type="text" placeholder="你的昵称" id="commentName">
+            <input type="email" placeholder="邮箱（选填）" id="commentEmail">
+            <textarea placeholder="写下你的评论..." id="commentText"></textarea>
+            <button class="comment-submit" onclick="submitComment()">发表评论</button>
+        </div>
+        <div class="comment-list" id="commentList">
+            
+                <div class="comment-item">
+                    <div class="comment-author">游戏达人小王</div>
+                    <div class="comment-date">2026-05-22</div>
+                    <div class="comment-text">这篇攻略太详细了！照着打终于过了卡了很久的BOSS，感谢作者！</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">新手玩家阿明</div>
+                    <div class="comment-date">2026-05-20</div>
+                    <div class="comment-text">作为刚入坑的新手，这篇攻略对我帮助很大。希望能更新更多配装推荐。</div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-author">硬核玩家老李</div>
+                    <div class="comment-date">2026-05-18</div>
+                    <div class="comment-text">内容很全面，但希望能补充更多高端技巧和隐藏内容。期待更新！</div>
+                </div>
+        </div>
+    </section>
 </main>
+
+<!-- 底部横幅广告 -->
+<div class="ad-container">
+    <div class="ad-banner">广告位预留 - 728x90 (桌面) / 320x100 (移动)</div>
+</div>
+
+<!-- 订阅区块 -->
+<section class="subscribe-section">
+    <h2>订阅最新攻略</h2>
+    <p>每周推送最新游戏攻略，不错过任何更新</p>
+    <div class="subscribe-form">
+        <input type="email" placeholder="输入你的邮箱地址" id="subscribeEmail">
+        <button onclick="doSubscribe()">立即订阅</button>
+    </div>
+</section>
+
 <footer class="footer">
     <p>GameGuide 游戏攻略站 &copy; 2026 — 为玩家提供最专业的游戏攻略服务</p>
 </footer>
+
+<script>
+// 搜索功能
+function doSearch() {
+    var q = document.getElementById('searchInput').value.trim();
+    if (q) { window.location.href = 'search.html?q=' + encodeURIComponent(q); }
+}
+
+// 夜间模式切换
+(function() {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+        document.documentElement.style.setProperty('--bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--border', '#e0e0e0');
+        document.documentElement.style.setProperty('--text', '#1a1a1a');
+        document.documentElement.style.setProperty('--text-secondary', '#666666');
+        document.documentElement.style.setProperty('--tag-bg', '#f0f0f0');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+})();
+
+function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.querySelector('.theme-toggle');
+    if (btn.textContent === '🌙') {
+        root.style.setProperty('--bg', '#f5f5f5');
+        root.style.setProperty('--card-bg', '#ffffff');
+        root.style.setProperty('--border', '#e0e0e0');
+        root.style.setProperty('--text', '#1a1a1a');
+        root.style.setProperty('--text-secondary', '#666666');
+        root.style.setProperty('--tag-bg', '#f0f0f0');
+        btn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        root.style.setProperty('--bg', '#0f0f1a');
+        root.style.setProperty('--card-bg', '#1a1a2e');
+        root.style.setProperty('--border', '#2a2a4a');
+        root.style.setProperty('--text', '#e0e0e0');
+        root.style.setProperty('--text-secondary', '#a0a0b0');
+        root.style.setProperty('--tag-bg', '#252540');
+        btn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// 评论提交
+function submitComment() {
+    var name = document.getElementById('commentName').value.trim();
+    var text = document.getElementById('commentText').value.trim();
+    if (!name || !text) { alert('请填写昵称和评论内容'); return; }
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var div = document.createElement('div');
+    div.className = 'comment-item';
+    div.innerHTML = '<div class="comment-author">' + name + '</div><div class="comment-date">' + dateStr + '</div><div class="comment-text">' + text + '</div>';
+    document.getElementById('commentList').prepend(div);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentText').value = '';
+}
+
+// 订阅
+function doSubscribe() {
+    var email = document.getElementById('subscribeEmail').value.trim();
+    if (!email) { alert('请输入邮箱地址'); return; }
+    alert('感谢订阅！我们会将最新攻略发送到 ' + email);
+    document.getElementById('subscribeEmail').value = '';
+}
+</script>
 </body>
 </html>
